@@ -1,0 +1,37 @@
+---
+/**
+ * Timeline: Vertical timeline for historical events, doctrinal development, etc.
+ *
+ * Usage:
+ *   <Timeline title="Historia de los credos">
+ *     <Event year="325" label="Concilio de Nicea">Se establece la divinidad de Cristo...</Event>
+ *     <Event year="381" label="Concilio de Constantinopla">Se afirma la divinidad del Espíritu...</Event>
+ *   </Timeline>
+ */
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+const { title, subtitle } = Astro.props;
+---
+
+<div class="my-16">
+  {
+    (title || subtitle) && (
+      <div class="mb-10">
+        {title && (
+          <h3 class="text-2xl font-display font-bold text-primary mb-1">
+            {title}
+          </h3>
+        )}
+        {subtitle && (
+          <p class="text-sm text-text-muted font-serif">{subtitle}</p>
+        )}
+      </div>
+    )
+  }
+
+  <div class="relative pl-8 border-l-2 border-border space-y-0">
+    <slot />
+  </div>
+</div>

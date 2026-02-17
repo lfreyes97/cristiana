@@ -1,23 +1,177 @@
+---
+import "../styles/themes.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es" data-theme="paper" data-mode="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta
+      name="description"
+      content="Una oda a la polimatía desde una perspectiva cristiana. Explorando teología, ciencia, arte y tecnología."
+    />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content="Una oda a la polimatía desde una perspectiva cristiana. Explorando teología, ciencia, arte y tecnología."
+    />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta
+      property="twitter:description"
+      content="Una oda a la polimatía desde una perspectiva cristiana."
+    />
+    <meta property="twitter:image" content="/og-image.jpg" />
+
+    <script is:inline>
+      // Prevent flash of wrong theme
+      const theme = localStorage.getItem("theme") || "paper";
+      const mode = localStorage.getItem("mode") || "light";
+      const style = localStorage.getItem("style") || "modern";
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.dataset.mode = mode;
+      document.documentElement.dataset.style = style;
+      if (mode === "dark") document.documentElement.classList.add("dark");
+    </script>
+
+    <!-- Fonts -->
+    <!-- Local fonts imported in frontmatter -->
+  </head>
+  <body
+    class="font-sans antialiased min-h-screen flex flex-col transition-colors duration-500"
+  >
+    <!-- SVG Filters (hidden, referenced by CSS) -->
+    <svg
+      style="position:absolute;width:0;height:0;overflow:hidden"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <!-- Paper: warm sepia -->
+        <filter id="filter-paper">
+          <feColorMatrix
+            type="matrix"
+            values="
+            0.95 0.12 0.02 0 0.02
+            0.05 0.85 0.05 0 0.01
+            0.02 0.05 0.75 0 0.00
+            0    0    0    1 0
+          "
+          ></feColorMatrix>
+        </filter>
+        <!-- Midnight: cool desaturated -->
+        <filter id="filter-midnight">
+          <feColorMatrix
+            type="matrix"
+            values="
+            0.70 0.15 0.15 0 0.00
+            0.10 0.70 0.20 0 0.00
+            0.10 0.20 0.80 0 0.02
+            0    0    0    1 0
+          "
+          ></feColorMatrix>
+        </filter>
+        <!-- Tokyo Night: purple/blue tint -->
+        <filter id="filter-tokyo-night">
+          <feColorMatrix
+            type="matrix"
+            values="
+            0.65 0.10 0.20 0 0.02
+            0.05 0.65 0.15 0 0.00
+            0.10 0.15 0.85 0 0.05
+            0    0    0    1 0
+          "
+          ></feColorMatrix>
+        </filter>
+        <!-- Gruvbox: warm retro -->
+        <filter id="filter-gruvbox">
+          <feColorMatrix
+            type="matrix"
+            values="
+            1.00 0.10 0.00 0 0.05
+            0.05 0.85 0.05 0 0.02
+            0.00 0.05 0.65 0 -0.02
+            0    0    0    1 0
+          "
+          ></feColorMatrix>
+        </filter>
+        <!-- Nord: cold arctic -->
+        <filter id="filter-nord">
+          <feColorMatrix
+            type="matrix"
+            values="
+            0.75 0.10 0.10 0 0.02
+            0.08 0.80 0.15 0 0.03
+            0.10 0.15 0.90 0 0.05
+            0    0    0    1 0
+          "
+          ></feColorMatrix>
+        </filter>
+      </defs>
+    </svg>
+
+    <slot />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary);
+  }
+
+  body {
+    background-color: var(--color-bg);
+    background-image: var(--bg-pattern);
+    background-size: var(--bg-size, 100px 100px);
+    background-attachment: fixed;
+    color: var(--color-text);
+    overflow-x: hidden;
+  }
+
+  /* Apply theme filter to all content images */
+  img:not([data-no-filter]) {
+    filter: var(--img-filter, none);
+    transition: filter 0.5s ease;
+  }
+
+  ::selection {
+    background: var(--color-secondary);
+    color: white;
+  }
 </style>

@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import BentoGrid from "../components/BentoGrid.astro";
+import EditorialFeatures from "../components/EditorialFeatures.astro";
+import Newsletter from "../components/Newsletter.astro";
+import Footer from "../components/Footer.astro";
+
+const allPosts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const featuredPosts = allPosts.slice(0, 3).map((post) => ({
+  title: post.data.title,
+  excerpt: post.data.description,
+  category: post.data.category,
+  date: post.data.pubDate.toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }),
+  readTime: "5 min",
+  icon: post.data.icon || "i-ph-file-text-duotone",
+  slug: post.id,
+  heroImage: post.data.heroImage,
+}));
+---
+
+<Layout title="Cristianamente - Una Oda a la Polimatía">
+  <Header />
+
+  <main class="bg-[var(--color-bg)] text-[var(--color-text)]">
+    <Hero />
+    <BentoGrid />
+    <EditorialFeatures posts={featuredPosts} />
+    <Newsletter />
+  </main>
+
+  <Footer />
+</Layout>

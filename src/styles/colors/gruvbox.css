@@ -1,0 +1,30 @@
+/* ·· Gruvbox (retro / warm) ··································· */
+[data-theme="gruvbox"] {
+  --color-bg:             #fbf1c7;
+  --color-bg-offset:      #f2e5bc;
+  --color-surface:        #ebdbb2;
+  --color-text:           #3c3836;
+  --color-text-muted:     #665c54;
+  --color-primary:        #282828;
+  --color-primary-dark:   #1d2021;
+  --color-secondary:      #9d0006;
+  --color-secondary-light:#cc241d;
+  --color-accent:         #d65d0e;
+  --color-border:         #d5c4a1;
+  --color-border-subtle:  #e6dcae;
+}
+
+[data-theme="gruvbox"][data-mode="dark"] {
+  --color-bg:             #282828;
+  --color-bg-offset:      #1d2021;
+  --color-surface:        #3c3836;
+  --color-text:           #ebdbb2;
+  --color-text-muted:     #a89984;
+  --color-primary:        #fbf1c7;
+  --color-primary-dark:   #ebdbb2;
+  --color-secondary:      #fb4934;
+  --color-secondary-light:#fe8019;
+  --color-accent:         #fe8019;
+  --color-border:         #504945;
+  --color-border-subtle:  #3c3836;
+}

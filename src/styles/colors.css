@@ -1,0 +1,7 @@
+/* ── Color Themes ──────────────────────────────────────────────── */
+
+@import "./colors/paper.css";
+@import "./colors/midnight.css";
+@import "./colors/tokyo-night.css";
+@import "./colors/gruvbox.css";
+@import "./colors/nord.css";

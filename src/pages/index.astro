@@ -1,11 +1,71 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+/**
+ * Alternative Home Page (v2)
+ *
+ * Layout:
+ *   1. HeroMinimal    — typographic, no bg effects
+ *   2. Disciplines    — horizontal scroll / 5-col grid
+ *   3. FeaturedPost   — magazine hero for latest post
+ *   4. EditorialFeatures — remaining posts as list
+ *   5. Manifesto      — Kuyper quote closer
+ *
+ * To test: rename this to index.astro and the current one to index.v1.astro
+ */
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import Header from "../components/Header.astro";
+import HeroMinimal from "../components/HeroMinimal.astro";
+import Disciplines from "../components/Disciplines.astro";
+import FeaturedPost from "../components/FeaturedPost.astro";
+import EditorialFeatures from "../components/EditorialFeatures.astro";
+import Manifesto from "../components/Manifesto.astro";
+import Footer from "../components/Footer.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const allPosts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const [latest, ...rest] = allPosts;
+
+const latestPost = {
+  title: latest.data.title,
+  excerpt: latest.data.description,
+  category: latest.data.category,
+  date: latest.data.pubDate.toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }),
+  slug: latest.id,
+  heroImage: latest.data.heroImage,
+};
+
+const morePosts = rest.slice(0, 3).map((post) => ({
+  title: post.data.title,
+  excerpt: post.data.description,
+  category: post.data.category,
+  date: post.data.pubDate.toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }),
+  readTime: "5 min",
+  icon: post.data.icon || "i-ph-file-text-duotone",
+  slug: post.id,
+  heroImage: post.data.heroImage,
+}));
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Cristianamente — Donde todo converge">
+  <Header />
+
+  <main>
+    <HeroMinimal />
+    <Disciplines />
+    <FeaturedPost {...latestPost} />
+    <EditorialFeatures posts={morePosts} />
+    <Manifesto />
+  </main>
+
+  <Footer />
 </Layout>

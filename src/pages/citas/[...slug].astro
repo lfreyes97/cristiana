@@ -1,0 +1,29 @@
+---
+/**
+ * Dynamic route for individual cita pages.
+ */
+import { getCollection, render } from "astro:content";
+import QuoteLayout from "../../layouts/QuoteLayout.astro";
+
+export async function getStaticPaths() {
+  const citas = await getCollection("citas");
+  return citas.map((cita) => ({
+    params: { slug: cita.id },
+    props: cita,
+  }));
+}
+
+const cita = Astro.props;
+const { Content } = await render(cita);
+---
+
+<QuoteLayout
+  title={cita.data.title}
+  author={cita.data.author}
+  source={cita.data.source}
+  category={cita.data.category}
+  pubDate={cita.data.pubDate}
+  tags={cita.data.tags}
+>
+  <Content />
+</QuoteLayout>

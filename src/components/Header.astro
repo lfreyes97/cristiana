@@ -1,0 +1,142 @@
+---
+import ThemeSwitcher from "./ThemeSwitcher.svelte";
+
+const currentPath = Astro.url.pathname;
+---
+
+<!-- CENTERED HEADER (main, scrolls away) -->
+<header id="main-header" class="relative w-full py-10 px-6">
+  <div class="w-full max-w-7xl mx-auto flex flex-col items-center gap-8">
+    <!-- Logo -->
+    <a
+      href="/"
+      class="text-5xl md:text-7xl font-display font-black tracking-tighter text-primary"
+    >
+      Cristianamente.
+    </a>
+
+    <!-- Pill Nav -->
+    <nav
+      class="w-auto overflow-x-auto px-8 py-3 bg-surface border-[length:var(--border-width)] border-border rounded-[var(--radius-pill)] shadow-[var(--shadow-md)] flex items-center gap-6 justify-center"
+    >
+      <a
+        href="/"
+        class:list={[
+          "text-xs font-black uppercase tracking-widest transition-colors whitespace-nowrap",
+          currentPath === "/"
+            ? "text-primary"
+            : "text-text-muted hover:text-primary",
+        ]}>Home</a
+      >
+      <div class="w-1.5 h-1.5 bg-border rotate-45"></div>
+      <a
+        href="/blog"
+        class:list={[
+          "text-xs font-black uppercase tracking-widest transition-colors whitespace-nowrap",
+          currentPath.startsWith("/blog")
+            ? "text-primary"
+            : "text-text-muted hover:text-primary",
+        ]}>Ensayos</a
+      >
+      <div class="w-1.5 h-1.5 bg-border rotate-45"></div>
+      <a
+        href="#"
+        class="text-xs font-black uppercase tracking-widest text-text-muted hover:text-primary transition-colors whitespace-nowrap"
+        >Notas</a
+      >
+      <div class="w-1.5 h-1.5 bg-border rotate-45"></div>
+      <a
+        href="/about"
+        class:list={[
+          "text-xs font-black uppercase tracking-widest transition-colors whitespace-nowrap",
+          currentPath === "/about"
+            ? "text-primary"
+            : "text-text-muted hover:text-primary",
+        ]}>Acerca</a
+      >
+    </nav>
+  </div>
+</header>
+
+<!-- STICKY HEADER (appears when centered header scrolls out) -->
+<div
+  id="sticky-header"
+  class="fixed top-0 left-0 w-full z-50 bg-bg/95 backdrop-blur-md border-b border-border-subtle shadow-sm -translate-y-full opacity-0 invisible transition-all duration-300"
+>
+  <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a
+      href="/"
+      class="text-xl font-serif font-black tracking-tighter text-primary"
+    >
+      Cristianamente.
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6">
+      <a
+        href="/blog"
+        class:list={[
+          "text-xs font-bold uppercase tracking-wider transition-colors",
+          currentPath.startsWith("/blog")
+            ? "text-primary"
+            : "text-text-muted hover:text-primary",
+        ]}>Ensayos</a
+      >
+      <a
+        href="#"
+        class="text-xs font-bold uppercase tracking-wider text-text-muted hover:text-primary transition-colors"
+        >Notas</a
+      >
+      <a
+        href="/about"
+        class:list={[
+          "text-xs font-bold uppercase tracking-wider transition-colors",
+          currentPath === "/about"
+            ? "text-primary"
+            : "text-text-muted hover:text-primary",
+        ]}>Acerca</a
+      >
+      <div class="w-px h-5 bg-border-subtle"></div>
+      <ThemeSwitcher client:only="svelte" />
+    </nav>
+
+    <div class="flex items-center gap-3 md:hidden">
+      <ThemeSwitcher client:only="svelte" />
+    </div>
+  </div>
+</div>
+
+<script>
+  const mainHeader = document.getElementById("main-header");
+  const stickyHeader = document.getElementById("sticky-header");
+
+  if (mainHeader && stickyHeader) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Main header visible → hide sticky
+          stickyHeader.classList.add(
+            "-translate-y-full",
+            "opacity-0",
+            "invisible",
+          );
+          stickyHeader.classList.remove(
+            "translate-y-0",
+            "opacity-100",
+            "visible",
+          );
+        } else {
+          // Main header gone → show sticky
+          stickyHeader.classList.remove(
+            "-translate-y-full",
+            "opacity-0",
+            "invisible",
+          );
+          stickyHeader.classList.add("translate-y-0", "opacity-100", "visible");
+        }
+      },
+      { threshold: 0 },
+    );
+
+    observer.observe(mainHeader);
+  }
+</script>

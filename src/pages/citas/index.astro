@@ -1,0 +1,114 @@
+---
+/**
+ * Quotes listing page: /citas
+ */
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+const allCitas = (await getCollection("citas")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const categories = [...new Set(allCitas.map((c) => c.data.category))];
+---
+
+<Layout title="Citas — Cristianamente">
+  <Header />
+
+  <main class="min-h-screen">
+    <section class="py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        {/* Page header */}
+        <div class="text-center mb-20">
+          <span
+            class="text-secondary font-mono text-xs tracking-[0.3em] uppercase block mb-4"
+          >
+            Colección
+          </span>
+          <h1
+            class="text-5xl md:text-6xl font-display font-black text-primary mb-6"
+          >
+            Citas
+          </h1>
+          <p class="text-lg text-text-muted font-serif max-w-xl mx-auto">
+            Palabras que encienden el pensamiento. Voces a través de los siglos.
+          </p>
+        </div>
+
+        {/* Category pills */}
+        {
+          categories.length > 1 && (
+            <div class="flex flex-wrap justify-center gap-3 mb-16">
+              {categories.map((cat) => (
+                <span class="px-4 py-2 text-xs font-bold uppercase tracking-widest text-text-muted bg-surface border-[length:var(--border-width)] border-border-subtle rounded-[var(--radius-pill)] hover:border-secondary/40 cursor-pointer transition-colors">
+                  {cat}
+                </span>
+              ))}
+            </div>
+          )
+        }
+
+        {/* Quote entries */}
+        <div class="space-y-8">
+          {
+            allCitas.map((cita) => (
+              <a
+                href={`/citas/${cita.id}`}
+                class="group block bg-surface border-[length:var(--border-width)] border-border-subtle rounded-[var(--radius-lg)] p-8 hover:border-secondary/40 hover:shadow-[var(--shadow-md)] transition-all duration-300"
+              >
+                <div class="flex items-start justify-between gap-6">
+                  <div class="flex-1">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="text-xs font-bold uppercase tracking-widest text-secondary">
+                        {cita.data.category}
+                      </span>
+                      <span class="w-1 h-1 bg-border rounded-full" />
+                      <span class="text-xs text-text-muted font-mono">
+                        {cita.data.pubDate.toLocaleDateString("es-ES", {
+                          year: "numeric",
+                          month: "short",
+                        })}
+                      </span>
+                    </div>
+
+                    <h2 class="text-2xl font-display font-bold text-primary group-hover:text-secondary transition-colors mb-2">
+                      {cita.data.title}
+                    </h2>
+
+                    {cita.data.description && (
+                      <p class="text-sm text-text-muted font-serif line-clamp-2">
+                        {cita.data.description}
+                      </p>
+                    )}
+
+                    <p class="mt-3 text-xs text-text-muted">
+                      <span class="font-bold">{cita.data.author}</span>
+                      {cita.data.source && (
+                        <span class="italic"> — {cita.data.source}</span>
+                      )}
+                    </p>
+                  </div>
+
+                  <div class="i-ph-arrow-right text-lg text-text-muted group-hover:text-secondary group-hover:translate-x-1 transition-all shrink-0 mt-2" />
+                </div>
+              </a>
+            ))
+          }
+        </div>
+
+        {
+          allCitas.length === 0 && (
+            <div class="text-center py-16">
+              <div class="i-ph-quotes text-5xl text-border mx-auto mb-4" />
+              <p class="text-text-muted">Pronto habrá citas aquí.</p>
+            </div>
+          )
+        }
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

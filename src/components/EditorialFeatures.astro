@@ -1,0 +1,58 @@
+---
+interface Props {
+  posts: {
+    title: string;
+    excerpt: string;
+    category: string;
+    date: string;
+    readTime: string;
+    icon: string;
+    slug: string;
+    heroImage?: string;
+  }[];
+}
+const { posts } = Astro.props;
+import CardBlog from "./CardBlog.astro";
+---
+
+<section class="py-24">
+  <div class="wrapper">
+    <div
+      class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-border pb-6"
+    >
+      <div>
+        <span
+          class="text-secondary font-bold tracking-widest uppercase text-xs mb-3 block"
+          >Últimas lecturas</span
+        >
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-primary">
+          Ensayos Recientes
+        </h2>
+      </div>
+      <a
+        href="/blog"
+        class="hidden md:flex items-center gap-2 font-medium text-primary hover:text-secondary transition-colors mt-4 md:mt-0"
+      >
+        Ver archivo completo <div class="i-ph-arrow-right"></div>
+      </a>
+    </div>
+
+    <div class="flex flex-col gap-16">
+      {
+        posts.map((post) => (
+          <CardBlog
+            title={post.title}
+            excerpt={post.excerpt}
+            category={post.category}
+            date={post.date}
+            readTime={post.readTime}
+            slug={post.slug}
+            icon={post.icon}
+            image={post.heroImage}
+            variant="list"
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

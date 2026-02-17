@@ -1,0 +1,79 @@
+---
+/**
+ * Tags index page: /tags
+ * Lists all tags from blog + citas with counts.
+ */
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+const blog = await getCollection("blog");
+const citas = await getCollection("citas");
+
+// Collect all tags with counts
+const tagMap = new Map<string, number>();
+
+for (const post of blog) {
+  for (const tag of post.data.tags ?? []) {
+    tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+  }
+}
+for (const cita of citas) {
+  for (const tag of cita.data.tags ?? []) {
+    tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+  }
+}
+
+const sorted = [...tagMap.entries()].sort((a, b) => b[1] - a[1]);
+---
+
+<Layout title="Tags — Cristianamente">
+  <Header />
+
+  <main class="min-h-screen">
+    <section class="py-24">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span
+            class="text-secondary font-mono text-xs tracking-[0.3em] uppercase block mb-4"
+          >
+            Explorar por
+          </span>
+          <h1
+            class="text-5xl md:text-6xl font-display font-black text-primary mb-6"
+          >
+            Tags
+          </h1>
+        </div>
+
+        {
+          sorted.length > 0 ? (
+            <div class="flex flex-wrap justify-center gap-3">
+              {sorted.map(([tag, count]) => (
+                <a
+                  href={`/tags/${tag}`}
+                  class="group flex items-center gap-2 px-4 py-2 bg-surface border-[length:var(--border-width)] border-border-subtle rounded-[var(--radius-pill)] hover:border-secondary/40 hover:shadow-[var(--shadow-sm)] transition-all"
+                >
+                  <span class="text-sm font-bold text-primary group-hover:text-secondary transition-colors">
+                    #{tag}
+                  </span>
+                  <span class="text-[10px] font-mono text-text-muted bg-bg-offset px-1.5 py-0.5 rounded-full">
+                    {count}
+                  </span>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div class="text-center py-16">
+              <div class="i-ph-tag text-5xl text-border mx-auto mb-4" />
+              <p class="text-text-muted">Todavía no hay tags.</p>
+            </div>
+          )
+        }
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

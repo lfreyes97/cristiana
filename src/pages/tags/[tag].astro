@@ -1,0 +1,141 @@
+---
+/**
+ * Individual tag page: /tags/[tag]
+ * Shows all blog posts + citas with a specific tag.
+ */
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const blog = await getCollection("blog");
+  const citas = await getCollection("citas");
+
+  const tags = new Set<string>();
+  for (const post of blog) {
+    for (const tag of post.data.tags ?? []) tags.add(tag);
+  }
+  for (const cita of citas) {
+    for (const tag of cita.data.tags ?? []) tags.add(tag);
+  }
+
+  return [...tags].map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+
+const blog = await getCollection("blog");
+const citas = await getCollection("citas");
+
+const blogPosts = blog
+  .filter((p) => p.data.tags?.includes(tag!))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const citasPosts = citas
+  .filter((c) => c.data.tags?.includes(tag!))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const total = blogPosts.length + citasPosts.length;
+---
+
+<Layout title={`#${tag} — Cristianamente`}>
+  <Header />
+
+  <main class="min-h-screen">
+    <section class="py-24">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <a
+            href="/tags"
+            class="text-xs font-mono text-text-muted hover:text-secondary transition-colors mb-4 block"
+          >
+            ← Todos los tags
+          </a>
+          <h1
+            class="text-4xl md:text-5xl font-display font-black text-primary mb-2"
+          >
+            #{tag}
+          </h1>
+          <p class="text-sm text-text-muted font-mono">
+            {total}
+            {total === 1 ? "entrada" : "entradas"}
+          </p>
+        </div>
+
+        {/* Blog posts */}
+        {
+          blogPosts.length > 0 && (
+            <div class="mb-12">
+              <h2 class="text-xs font-bold uppercase tracking-widest text-secondary mb-6">
+                Ensayos
+              </h2>
+              <div class="space-y-4">
+                {blogPosts.map((post) => (
+                  <a
+                    href={`/blog/${post.id}`}
+                    class="group flex items-start justify-between gap-4 py-4 border-b border-border-subtle hover:border-secondary/30 transition-colors"
+                  >
+                    <div>
+                      <h3 class="text-lg font-bold text-primary group-hover:text-secondary transition-colors">
+                        {post.data.title}
+                      </h3>
+                      <p class="text-sm text-text-muted font-serif mt-1 line-clamp-1">
+                        {post.data.description}
+                      </p>
+                    </div>
+                    <span class="text-xs text-text-muted font-mono shrink-0 mt-1">
+                      {post.data.pubDate.toLocaleDateString("es-ES", {
+                        year: "numeric",
+                        month: "short",
+                      })}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        {/* Citas */}
+        {
+          citasPosts.length > 0 && (
+            <div>
+              <h2 class="text-xs font-bold uppercase tracking-widest text-accent mb-6">
+                Citas
+              </h2>
+              <div class="space-y-4">
+                {citasPosts.map((cita) => (
+                  <a
+                    href={`/citas/${cita.id}`}
+                    class="group flex items-start justify-between gap-4 py-4 border-b border-border-subtle hover:border-accent/30 transition-colors"
+                  >
+                    <div>
+                      <h3 class="text-lg font-bold text-primary group-hover:text-accent transition-colors">
+                        {cita.data.title}
+                      </h3>
+                      <p class="text-sm text-text-muted mt-1">
+                        <span class="font-bold">{cita.data.author}</span>
+                        {cita.data.source && (
+                          <span class="italic"> — {cita.data.source}</span>
+                        )}
+                      </p>
+                    </div>
+                    <span class="text-xs text-text-muted font-mono shrink-0 mt-1">
+                      {cita.data.pubDate.toLocaleDateString("es-ES", {
+                        year: "numeric",
+                        month: "short",
+                      })}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )
+        }
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

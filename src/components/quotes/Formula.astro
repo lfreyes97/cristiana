@@ -1,0 +1,62 @@
+---
+/**
+ * Formula: Math/logic formula display block.
+ * Uses Typst math rendering (via rehype-typst already configured).
+ * Also works for plain-text symbolic expressions.
+ *
+ * Usage:
+ *   <Formula label="Ley moral de Kant" notation="formal">
+ *     Actúa solo según aquella máxima por la cual puedas querer
+ *     que al mismo tiempo se convierta en ley universal.
+ *   </Formula>
+ *
+ * For actual math, write Typst inline: $P(A|B) = P(B|A) dot P(A) / P(B)$
+ */
+interface Props {
+  label?: string;
+  notation?: "formal" | "simbólica" | "matemática";
+  source?: string;
+}
+const { label, notation, source } = Astro.props;
+---
+
+<figure class="my-10">
+  <div
+    class="bg-bg-offset border border-border-subtle rounded-[var(--radius-md)] overflow-hidden"
+  >
+    {/* Label bar */}
+    {
+      (label || notation) && (
+        <div class="px-5 py-2.5 border-b border-border-subtle flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="i-ph-function text-sm text-secondary" />
+            {label && (
+              <span class="text-xs font-bold text-primary">{label}</span>
+            )}
+          </div>
+          {notation && (
+            <span class="text-[10px] font-mono uppercase tracking-widest text-text-muted">
+              {notation}
+            </span>
+          )}
+        </div>
+      )
+    }
+
+    {/* Formula content */}
+    <div
+      class="px-6 py-6 text-center text-lg md:text-xl font-serif text-primary leading-relaxed [&_.typst-doc]:mx-auto"
+    >
+      <slot />
+    </div>
+
+    {/* Source */}
+    {
+      source && (
+        <div class="px-5 py-2 border-t border-border-subtle">
+          <span class="text-[10px] text-text-muted italic">{source}</span>
+        </div>
+      )
+    }
+  </div>
+</figure>

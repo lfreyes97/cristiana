@@ -1,0 +1,73 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+import CardBlog from "../../components/CardBlog.astro";
+
+const posts = (await getCollection("blog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map((post) => ({
+    title: post.data.title,
+    excerpt: post.data.description,
+    category: post.data.category,
+    date: post.data.pubDate.toLocaleDateString("es-ES", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    }),
+    readTime: "5 min",
+    icon: post.data.icon || "i-ph-file-text-duotone",
+    slug: post.id,
+    heroImage: post.data.heroImage,
+  }));
+---
+
+<Layout title="Ensayos - Cristianamente">
+  <Header />
+
+  <main class="min-h-screen">
+    <section class="py-24">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="text-center mb-24">
+          <span
+            class="text-secondary font-bold tracking-widest uppercase text-xs mb-3 block"
+            >Archivo</span
+          >
+          <h1
+            class="text-5xl md:text-6xl font-serif font-bold text-primary mb-6"
+          >
+            Ensayos
+          </h1>
+          <p
+            class="text-xl text-text opacity-80 font-sans font-light leading-relaxed max-w-xl mx-auto"
+          >
+            Explorando la intersección de la fe, la razón y la cultura a través
+            de la escritura lenta.
+          </p>
+          <div class="w-12 h-1 bg-secondary mx-auto mt-8"></div>
+        </div>
+
+        <div class="space-y-16">
+          {
+            posts.map((post) => (
+              <CardBlog
+                title={post.title}
+                excerpt={post.excerpt}
+                category={post.category}
+                date={post.date}
+                readTime={post.readTime}
+                slug={post.slug}
+                icon={post.icon}
+                image={post.heroImage}
+                variant="list"
+              />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

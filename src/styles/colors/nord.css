@@ -1,0 +1,30 @@
+/* ·· Nord (arctic / cool) ····································· */
+[data-theme="nord"] {
+  --color-bg:             #eceff4;
+  --color-bg-offset:      #e5e9f0;
+  --color-surface:        #ffffff;
+  --color-text:           #2e3440;
+  --color-text-muted:     #4c566a;
+  --color-primary:        #3b4252;
+  --color-primary-dark:   #2e3440;
+  --color-secondary:      #88c0d0;
+  --color-secondary-light:#8fbcbb;
+  --color-accent:         #5e81ac;
+  --color-border:         #d8dee9;
+  --color-border-subtle:  #e5e9f0;
+}
+
+[data-theme="nord"][data-mode="dark"] {
+  --color-bg:             #2e3440;
+  --color-bg-offset:      #242933;
+  --color-surface:        #3b4252;
+  --color-text:           #eceff4;
+  --color-text-muted:     #d8dee9;
+  --color-primary:        #eceff4;
+  --color-primary-dark:   #e5e9f0;
+  --color-secondary:      #81a1c1;
+  --color-secondary-light:#88c0d0;
+  --color-accent:         #88c0d0;
+  --color-border:         #434c5e;
+  --color-border-subtle:  #3b4252;
+}

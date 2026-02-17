@@ -1,0 +1,51 @@
+---
+/**
+ * Nota: Sidebar annotation / editorial note.
+ * For commentary, context, or cross-references within quote collections.
+ *
+ * Usage:
+ *   <Nota>
+ *     Este concepto se relaciona directamente con la doctrina de la creación...
+ *   </Nota>
+ */
+interface Props {
+  type?: "nota" | "contexto" | "advertencia";
+}
+const { type = "nota" } = Astro.props;
+
+const config: Record<string, { icon: string; label: string; color: string }> = {
+  nota: {
+    icon: "i-ph-note-pencil",
+    label: "Nota editorial",
+    color: "text-text-muted",
+  },
+  contexto: {
+    icon: "i-ph-clock-clockwise",
+    label: "Contexto histórico",
+    color: "text-accent",
+  },
+  advertencia: {
+    icon: "i-ph-warning",
+    label: "Nota crítica",
+    color: "text-secondary",
+  },
+};
+
+const c = config[type] || config.nota;
+---
+
+<aside
+  class="my-8 bg-bg-offset/60 border border-border-subtle rounded-[var(--radius-md)] p-5"
+>
+  <div class="flex items-center gap-2 mb-3">
+    <div class:list={[c.icon, "text-sm", c.color]}></div>
+    <span
+      class:list={["text-[10px] font-bold uppercase tracking-widest", c.color]}
+    >
+      {c.label}
+    </span>
+  </div>
+  <div class="text-sm text-text-muted leading-relaxed [&>p]:mb-2">
+    <slot />
+  </div>
+</aside>

@@ -1,0 +1,51 @@
+---
+/**
+ * QuoteCard: Standalone quote card for grids.
+ * Usage in MDX:
+ *   <QuoteCard author="Pascal" source="Pensées" category="Filosofía">
+ *     El corazón tiene razones...
+ *   </QuoteCard>
+ */
+interface Props {
+  author?: string;
+  source?: string;
+  category?: string;
+}
+const { author, source, category } = Astro.props;
+---
+
+<div
+  class="bg-surface border-[length:var(--border-width)] border-border-subtle rounded-[var(--radius-lg)] p-8 hover:border-secondary/40 hover:shadow-[var(--shadow-md)] transition-all duration-300 flex flex-col justify-between"
+>
+  {
+    category && (
+      <span class="text-xs font-bold uppercase tracking-widest text-secondary mb-4 block">
+        {category}
+      </span>
+    )
+  }
+
+  <blockquote
+    class="text-lg font-serif italic text-primary leading-relaxed mb-6 flex-1"
+  >
+    <slot />
+  </blockquote>
+
+  <div class="border-t border-border-subtle pt-4 flex items-center gap-3">
+    <div
+      class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center"
+    >
+      <span class="text-xs font-bold text-secondary">
+        {author ? author.charAt(0) : "?"}
+      </span>
+    </div>
+    <div>
+      {
+        author && (
+          <span class="text-sm font-bold text-primary block">{author}</span>
+        )
+      }
+      {source && <span class="text-xs text-text-muted italic">{source}</span>}
+    </div>
+  </div>
+</div>

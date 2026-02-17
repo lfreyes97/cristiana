@@ -1,0 +1,64 @@
+---
+/**
+ * LongQuote: Multi-paragraph quote with prominent attribution.
+ * Designed for extended passages from books, sermons, or letters.
+ *
+ * Usage:
+ *   <LongQuote author="C.S. Lewis" source="Mero Cristianismo" year="1952">
+ *     Paragraph 1...
+ *
+ *     Paragraph 2...
+ *   </LongQuote>
+ */
+interface Props {
+  author: string;
+  source?: string;
+  year?: string;
+}
+const { author, source, year } = Astro.props;
+---
+
+<figure class="my-16">
+  <div
+    class="bg-surface border-[length:var(--border-width)] border-border-subtle rounded-[var(--radius-lg)] overflow-hidden"
+  >
+    {/* Top accent bar */}
+    <div
+      class="h-1 bg-gradient-to-r from-secondary/60 via-accent/40 to-transparent"
+    >
+    </div>
+
+    <div class="p-8 md:p-12">
+      <div class="i-ph-book-open-text text-2xl text-secondary/40 mb-6"></div>
+
+      <blockquote
+        class="text-lg font-serif italic text-primary leading-relaxed space-y-4 [&>p]:mb-4"
+      >
+        <slot />
+      </blockquote>
+    </div>
+
+    {/* Attribution footer */}
+    <div
+      class="px-8 md:px-12 py-5 bg-bg-offset/50 border-t border-border-subtle flex flex-wrap items-center gap-x-3 gap-y-1"
+    >
+      <span class="text-sm font-bold text-primary font-sans not-italic">
+        — {author}
+      </span>
+      {
+        source && (
+          <span class="text-sm text-text-muted italic font-serif">
+            {source}
+          </span>
+        )
+      }
+      {
+        year && (
+          <span class="text-xs text-text-muted font-mono opacity-60">
+            ({year})
+          </span>
+        )
+      }
+    </div>
+  </div>
+</figure>

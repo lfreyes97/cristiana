@@ -1,0 +1,13 @@
+diff --git a/dist/index.js b/dist/index.js
+index 22d880ccba9574f8d90fa42dd3ecfd58d202a6de..5fa267cd117f15972179a4139bda2842dc285413 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -3,7 +3,7 @@ import { XMLBuilder, XMLParser } from "fast-xml-parser";
+ import colors from "piccolore";
+ import { rssSchema } from "./schema.js";
+ import { createCanonicalURL, errorMap, isValidURL } from "./util.js";
+-const globResultValidator = z.record(z.function().returns(z.promise(z.any())));
++const globResultValidator = z.record(z.function().output(z.promise(z.any())));
+ const rssOptionsValidator = z.object({
+   title: z.string(),
+   description: z.string(),

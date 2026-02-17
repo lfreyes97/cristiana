@@ -1,0 +1,149 @@
+---
+title: "Título de la colección"
+description: "Breve descripción de esta colección de citas."
+pubDate: "2025-01-01"
+author: "Autor principal"
+source: "Fuente principal (opcional)"
+category: "Teología"
+tags: ["tag1", "tag2"]
+---
+
+{/* ── Imports ─────────────────────────────────────────────── */}
+{/* Copiar solo los que necesites */}
+
+import QuoteHero from "../../components/quotes/QuoteHero.astro";
+import QuoteBlock from "../../components/quotes/QuoteBlock.astro";
+import QuoteCard from "../../components/quotes/QuoteCard.astro";
+import QuoteGrid from "../../components/quotes/QuoteGrid.astro";
+import QuoteDivider from "../../components/quotes/QuoteDivider.astro";
+import ScriptureBlock from "../../components/quotes/ScriptureBlock.astro";
+import LongQuote from "../../components/quotes/LongQuote.astro";
+import Argument from "../../components/quotes/Argument.astro";
+import Definition from "../../components/quotes/Definition.astro";
+import Formula from "../../components/quotes/Formula.astro";
+import Dialogue from "../../components/quotes/Dialogue.astro";
+import Turn from "../../components/quotes/Turn.astro";
+import Nota from "../../components/quotes/Nota.astro";
+import Debate from "../../components/quotes/Debate.astro";
+import L from "../../components/quotes/L.astro";
+import R from "../../components/quotes/R.astro";
+import Mod from "../../components/quotes/Mod.astro";
+import Pub from "../../components/quotes/Pub.astro";
+import Timeline from "../../components/quotes/Timeline.astro";
+import Event from "../../components/quotes/Event.astro";
+import Comparison from "../../components/quotes/Comparison.astro";
+import Creed from "../../components/quotes/Creed.astro";
+import Article from "../../components/quotes/Article.astro";
+import Sidenote from "../../components/quotes/Sidenote.astro";
+import BookCard from "../../components/quotes/BookCard.astro";
+import CrossRef from "../../components/quotes/CrossRef.astro";
+
+{/* ── Ejemplos ────────────────────────────────────────────── */}
+
+{/* HERO: Cita grande centrada */}
+<QuoteHero author="Autor" source="Fuente">
+  Texto de la cita principal.
+</QuoteHero>
+
+{/* ESCRITURA */}
+<ScriptureBlock ref="Juan 1:1" version="RVR1960">
+  En el principio era el Verbo...
+</ScriptureBlock>
+
+{/* BLOCKQUOTE: variantes default | large | accent */}
+<QuoteBlock author="Autor" source="Fuente" variant="default">
+  Cita estándar.
+</QuoteBlock>
+
+{/* GRID DE TARJETAS */}
+<QuoteGrid cols={2}>
+  <QuoteCard author="Autor 1" source="Fuente" category="Categoría">
+    Texto de la cita.
+  </QuoteCard>
+  <QuoteCard author="Autor 2" source="Fuente" category="Categoría">
+    Texto de la cita.
+  </QuoteCard>
+</QuoteGrid>
+
+{/* CITA LARGA */}
+<LongQuote author="Autor" source="Libro" year="2000">
+  Primer párrafo largo...
+
+  Segundo párrafo...
+</LongQuote>
+
+{/* DEFINICIÓN */}
+<Definition term="Término" origin="griego" pronunciation="tér·mi·no" related={["concepto1", "concepto2"]}>
+  Definición del término.
+</Definition>
+
+{/* ARGUMENTO: type = deductivo | inductivo | abductivo */}
+<Argument title="Nombre del argumento" author="Autor" type="deductivo">
+  <li>Primera premisa.</li>
+  <li>Segunda premisa.</li>
+  <li>Conclusión.</li>
+</Argument>
+
+{/* FÓRMULA */}
+<Formula label="Nombre" notation="simbólica" source="Fuente">
+  ∀x : P(x)
+</Formula>
+
+{/* DIÁLOGO */}
+<Dialogue>
+  <Turn speaker="Persona A">Texto...</Turn>
+  <Turn speaker="Persona B">Respuesta...</Turn>
+</Dialogue>
+
+{/* DEBATE (chat-style) */}
+<Debate title="Título" date="Lugar, año"
+  left={{ name: "Ponente A", role: "Posición" }}
+  right={{ name: "Ponente B", role: "Posición" }}>
+  <Mod ts="0:00">Intro del moderador.</Mod>
+  <L ts="0:01">Argumento izq.</L>
+  <R ts="4:00">Argumento der.</R>
+  <Pub speaker="Público" ts="8:00">Pregunta?</Pub>
+</Debate>
+
+{/* TIMELINE */}
+<Timeline title="Título" subtitle="Subtítulo">
+  <Event year="325" label="Evento 1">Descripción.</Event>
+  <Event year="381" label="Evento 2">Descripción.</Event>
+</Timeline>
+
+{/* COMPARACIÓN (usa named slots) */}
+<Comparison
+  left={{ title: "Posición A", subtitle: "Subtítulo" }}
+  right={{ title: "Posición B", subtitle: "Subtítulo" }}>
+  <Fragment slot="left">
+    Contenido izquierdo.
+  </Fragment>
+  <Fragment slot="right">
+    Contenido derecho.
+  </Fragment>
+</Comparison>
+
+{/* CREDO */}
+<Creed title="Nombre del credo" year="325" council="Concilio de Nicea">
+  <Article n={1}>Primer artículo.</Article>
+  <Article n={2}>Segundo artículo.</Article>
+</Creed>
+
+{/* SIDENOTE (margen en desktop, inline en mobile) */}
+Texto principal con nota al margen.<Sidenote n={1}>Contenido de la nota.</Sidenote>
+
+{/* LIBRO */}
+<BookCard title="Título" author="Autor" year="2000" rating={4} tags={["tag1"]}>
+  Reseña breve del libro.
+</BookCard>
+
+{/* REFERENCIA CRUZADA: type = cita | ensayo | debate */}
+<CrossRef href="/citas/slug" title="Título" author="Autor" type="cita">
+  Descripción breve del contenido enlazado.
+</CrossRef>
+
+{/* UTILIDADES */}
+<QuoteDivider label="Sección" />
+<Nota type="nota">Nota editorial.</Nota>
+<Nota type="contexto">Contexto histórico.</Nota>
+<Nota type="advertencia">Nota crítica.</Nota>

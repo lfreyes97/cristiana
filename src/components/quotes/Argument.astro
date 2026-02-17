@@ -1,0 +1,98 @@
+---
+/**
+ * Argument: Structured logical argument block.
+ * Displays premises and conclusion in a clear deductive format.
+ *
+ * Usage:
+ *   <Argument title="Argumento cosmológico" author="Tomás de Aquino">
+ *     <li>Todo lo que comienza a existir tiene una causa.</li>
+ *     <li>El universo comenzó a existir.</li>
+ *     <li>Por lo tanto, el universo tiene una causa.</li>
+ *   </Argument>
+ */
+interface Props {
+  title?: string;
+  author?: string;
+  source?: string;
+  type?: "deductivo" | "inductivo" | "abductivo";
+}
+const { title, author, source, type = "deductivo" } = Astro.props;
+
+const typeLabel: Record<string, string> = {
+  deductivo: "Argumento deductivo",
+  inductivo: "Argumento inductivo",
+  abductivo: "Inferencia a la mejor explicación",
+};
+---
+
+<figure class="my-12">
+  <div
+    class="bg-surface border-[length:var(--border-width)] border-border rounded-[var(--radius-lg)] overflow-hidden"
+  >
+    {/* Header */}
+    <div
+      class="px-6 py-4 bg-bg-offset border-b border-border-subtle flex items-center gap-3"
+    >
+      <div class="i-ph-flow-arrow text-lg text-secondary"></div>
+      <div>
+        {
+          title && (
+            <span class="text-sm font-bold text-primary block">{title}</span>
+          )
+        }
+        <span
+          class="text-[10px] font-mono text-text-muted uppercase tracking-widest"
+        >
+          {typeLabel[type] || type}
+        </span>
+      </div>
+    </div>
+
+    {/* Premises & conclusion */}
+    <div class="p-6">
+      <ol
+        class="list-none space-y-3 [&>li]:flex [&>li]:gap-3 [&>li]:items-start text-primary font-serif"
+      >
+        <slot />
+      </ol>
+    </div>
+
+    {/* Attribution */}
+    {
+      (author || source) && (
+        <div class="px-6 py-3 border-t border-border-subtle">
+          <span class="text-xs text-text-muted">
+            {author && <span class="font-bold">{author}</span>}
+            {source && <span class="italic"> — {source}</span>}
+          </span>
+        </div>
+      )
+    }
+  </div>
+</figure>
+
+<style>
+  /* Number each li as P1, P2... and last as ∴ */
+  ol :global(li) {
+    counter-increment: premise;
+  }
+  ol :global(li::before) {
+    content: "P" counter(premise);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    background: color-mix(in srgb, var(--color-secondary), transparent 90%);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    flex-shrink: 0;
+    min-width: 2rem;
+    text-align: center;
+  }
+  ol :global(li:last-child::before) {
+    content: "∴";
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary), transparent 85%);
+  }
+</style>

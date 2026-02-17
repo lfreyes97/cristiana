@@ -1,0 +1,81 @@
+---
+/**
+ * Debate: Container for a debate/discussion transcript.
+ * Renders as a vertical timeline with chat-style bubbles.
+ *
+ * Usage:
+ *   <Debate title="¿Existe Dios?" date="Oxford, 1998"
+ *     left={{ name: "William L. Craig", role: "Teísta" }}
+ *     right={{ name: "Peter Atkins", role: "Ateo" }}>
+ *     <Mod>Bienvenidos al debate de esta noche...</Mod>
+ *     <L ts="00:02">El argumento cosmológico demuestra...</L>
+ *     <R ts="00:08">La ciencia no necesita una causa primera...</R>
+ *     <Pub speaker="Estudiante">¿Cómo define usted «causa»?</Pub>
+ *   </Debate>
+ */
+interface Props {
+  title: string;
+  date?: string;
+  left: { name: string; role?: string };
+  right: { name: string; role?: string };
+}
+const { title, date, left, right } = Astro.props;
+---
+
+<div class="my-16">
+  {/* Debate header */}
+  <div class="text-center mb-10">
+    <div class="i-ph-microphone-stage text-3xl text-secondary/40 mx-auto mb-4">
+    </div>
+    <h3 class="text-2xl md:text-3xl font-display font-black text-primary mb-2">
+      {title}
+    </h3>
+    {
+      date && (
+        <span class="text-xs font-mono text-text-muted uppercase tracking-widest">
+          {date}
+        </span>
+      )
+    }
+  </div>
+
+  {/* Participants bar */}
+  <div class="flex justify-between items-center mb-8 px-2">
+    <div class="text-left">
+      <span class="block text-sm font-bold text-primary">{left.name}</span>
+      {
+        left.role && (
+          <span class="text-[10px] font-mono uppercase tracking-widest text-secondary">
+            {left.role}
+          </span>
+        )
+      }
+    </div>
+    <div
+      class="text-[10px] font-mono uppercase tracking-widest text-text-muted"
+    >
+      vs
+    </div>
+    <div class="text-right">
+      <span class="block text-sm font-bold text-primary">{right.name}</span>
+      {
+        right.role && (
+          <span class="text-[10px] font-mono uppercase tracking-widest text-accent">
+            {right.role}
+          </span>
+        )
+      }
+    </div>
+  </div>
+
+  {/* Timeline */}
+  <div class="relative space-y-4">
+    {/* Center line */}
+    <div
+      class="absolute left-1/2 top-0 bottom-0 w-px bg-border-subtle -translate-x-1/2 hidden md:block"
+    >
+    </div>
+
+    <slot />
+  </div>
+</div>

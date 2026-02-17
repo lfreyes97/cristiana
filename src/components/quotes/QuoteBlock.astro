@@ -1,0 +1,46 @@
+---
+/**
+ * QuoteBlock: Main styled blockquote for MDX.
+ * Usage in MDX:
+ *   <QuoteBlock author="Agustín" source="Confesiones">
+ *     Nos hiciste para ti, Señor...
+ *   </QuoteBlock>
+ */
+interface Props {
+  author?: string;
+  source?: string;
+  variant?: "default" | "large" | "accent";
+}
+const { author, source, variant = "default" } = Astro.props;
+
+const variantClasses = {
+  default: "text-2xl",
+  large: "text-3xl md:text-4xl",
+  accent: "text-2xl bg-secondary/5 border-secondary",
+};
+---
+
+<figure class="my-12">
+  <blockquote
+    class:list={[
+      "border-l-3 border-primary pl-8 py-4 font-serif italic leading-relaxed text-primary",
+      variantClasses[variant],
+    ]}
+  >
+    <slot />
+  </blockquote>
+  {
+    (author || source) && (
+      <figcaption class="mt-4 pl-8 flex items-center gap-2">
+        {author && (
+          <span class="text-sm font-bold text-primary font-sans not-italic">
+            — {author}
+          </span>
+        )}
+        {source && (
+          <span class="text-xs text-text-muted font-mono italic">{source}</span>
+        )}
+      </figcaption>
+    )
+  }
+</figure>

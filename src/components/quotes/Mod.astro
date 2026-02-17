@@ -1,0 +1,42 @@
+---
+/**
+ * Mod: Moderator intervention in the center of a Debate.
+ * Centered, neutral style — announces, redirects, or manages the debate.
+ *
+ * Usage (inside <Debate>):
+ *   <Mod ts="00:15">Pasemos ahora a las preguntas del público.</Mod>
+ */
+interface Props {
+  ts?: string;
+}
+const { ts } = Astro.props;
+---
+
+<div class="flex justify-center relative">
+  {/* Timeline diamond */}
+  <div
+    class="absolute left-1/2 top-3 w-2.5 h-2.5 bg-text-muted border-2 border-bg -translate-x-1/2 rotate-45 hidden md:block z-10"
+  >
+  </div>
+
+  <div class="max-w-sm w-full text-center">
+    {
+      ts && (
+        <span class="text-[10px] font-mono text-text-muted mb-1 block">
+          {ts}
+        </span>
+      )
+    }
+    <div
+      class="bg-bg-offset border border-border-subtle rounded-[var(--radius-pill)] px-5 py-2.5"
+    >
+      <div class="text-xs text-text-muted font-sans leading-relaxed">
+        <div
+          class="i-ph-user-circle-gear text-xs text-text-muted inline-block mr-1 align-middle"
+        >
+        </div>
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>

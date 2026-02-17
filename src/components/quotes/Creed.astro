@@ -1,0 +1,60 @@
+---
+/**
+ * Creed: Formatted confessional statement with numbered articles.
+ *
+ * Usage:
+ *   <Creed title="Credo de Nicea" year="325" council="Primer Concilio de Nicea">
+ *     <Article n={1}>Creo en un solo Dios, Padre Todopoderoso...</Article>
+ *     <Article n={2}>Y en un solo Señor Jesucristo...</Article>
+ *   </Creed>
+ */
+interface Props {
+  title: string;
+  year?: string;
+  council?: string;
+  tradition?: string;
+}
+const { title, year, council, tradition } = Astro.props;
+---
+
+<div class="my-16">
+  <div
+    class="bg-surface border-[length:var(--border-width)] border-border rounded-[var(--radius-lg)] overflow-hidden"
+  >
+    {/* Header */}
+    <div class="px-8 py-6 border-b border-border-subtle text-center">
+      <div class="i-ph-scroll text-2xl text-accent/40 mx-auto mb-3"></div>
+      <h3 class="text-xl md:text-2xl font-display font-black text-primary">
+        {title}
+      </h3>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        {
+          year && (
+            <span class="text-[10px] font-mono font-bold text-secondary uppercase tracking-widest">
+              {year}
+            </span>
+          )
+        }
+        {
+          council && (
+            <span class="text-xs text-text-muted font-serif italic">
+              {council}
+            </span>
+          )
+        }
+        {
+          tradition && (
+            <span class="text-[10px] px-2 py-0.5 bg-accent/10 text-accent font-mono rounded-[var(--radius-pill)]">
+              {tradition}
+            </span>
+          )
+        }
+      </div>
+    </div>
+
+    {/* Articles */}
+    <div class="px-8 py-6 space-y-0">
+      <slot />
+    </div>
+  </div>
+</div>

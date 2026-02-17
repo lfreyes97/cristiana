@@ -1,0 +1,139 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Sobre el proyecto - Cristianamente">
+  <Header />
+
+  <main class="py-24 min-h-screen">
+    <article class="max-w-6xl mx-auto px-6">
+      <!-- Header -->
+      <header class="text-center mb-24">
+        <span
+          class="text-secondary font-bold tracking-widest uppercase text-xs mb-4 block"
+          >Sobre el proyecto</span
+        >
+        <h1
+          class="text-6xl md:text-8xl font-display font-black text-primary mb-8 leading-[1.05] tracking-tighter"
+        >
+          Todo es <br />
+          <span class="text-secondary italic font-serif">teología.</span>
+        </h1>
+        <p
+          class="max-w-2xl mx-auto text-xl text-text opacity-80 font-serif leading-relaxed"
+        >
+          Si Dios es el autor de la realidad, entonces cada disciplina es un
+          capítulo de su libro.
+        </p>
+        <div class="w-24 h-1 bg-secondary mx-auto mt-12"></div>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+        <!-- Sidebar -->
+        <aside
+          class="md:col-span-4 md:sticky md:top-32 self-start order-2 md:order-1"
+        >
+          <div
+            class="bg-surface p-8 rounded-[var(--radius-md)] border-[length:var(--border-width)] border-border shadow-[var(--shadow-sm)]"
+          >
+            <h3
+              class="font-display font-bold text-primary mb-6 text-lg tracking-tight"
+            >
+              La idea en breve
+            </h3>
+            <ul
+              class="space-y-6 text-sm text-text opacity-80 leading-relaxed font-sans"
+            >
+              <li class="flex gap-4">
+                <span class="text-secondary font-bold">01.</span>
+                <span>La fe no reduce el mundo — lo abre.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-secondary font-bold">02.</span>
+                <span>No hay fronteras entre lo sagrado y lo secular.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-secondary font-bold">03.</span>
+                <span
+                  >Cada disciplina es una lente distinta hacia la misma verdad.</span
+                >
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Article Content -->
+        <div
+          class="md:col-span-8 prose prose-lg prose-slate dark:prose-invert font-serif leading-loose text-text order-1 md:order-2"
+        >
+          <p class="text-2xl leading-relaxed text-primary font-medium mb-8">
+            Cristianamente nace de una convicción simple: <strong
+              class="text-secondary"
+              >la fe cristiana no es una reducción de la realidad, sino su
+              expansión.</strong
+            > El mismo Dios que sostiene las galaxias también diseñó la lógica matemática,
+            la armonía musical y la arquitectura del ADN.
+          </p>
+          <p class="text-lg opacity-80">
+            Vivimos en una era de hiper-especialización. El conocimiento se
+            fragmenta en silos cada vez más estrechos. Pero hay una tradición
+            más antigua — una que ve conexiones donde otros ven divisiones. Una
+            que se niega a aceptar que la verdad pueda contradecirse a sí misma.
+          </p>
+          <p class="text-lg opacity-80">
+            Esto no es nostalgia. Es una convicción: si Dios es coherente,
+            entonces el teólogo y el científico, el artista y el filósofo, están
+            leyendo capítulos del mismo libro. Como dijo Abraham Kuyper:
+          </p>
+
+          <blockquote
+            class="border-l-2 border-secondary pl-8 py-4 my-12 italic text-2xl font-serif text-primary"
+          >
+            "No hay un solo centímetro cuadrado en todo el dominio de nuestra
+            existencia humana sobre el cual Cristo, que es Soberano sobre todo,
+            no grite: ¡Mío!"
+            <footer
+              class="text-sm font-sans mt-4 not-italic opacity-50 uppercase tracking-widest font-bold"
+            >
+              — Abraham Kuyper
+            </footer>
+          </blockquote>
+
+          <p class="text-lg opacity-80">
+            Aquí escribimos sobre teología y literatura, tecnología y arte,
+            ciencia y filosofía — no como compartimentos, sino como facetas de
+            una misma realidad. Cada ensayo es un intento de ver más, no menos.
+          </p>
+          <p class="text-lg opacity-80">
+            No buscamos tener todas las respuestas. Buscamos hacer mejores
+            preguntas — y hacerlas desde la fe, con honestidad intelectual y
+            asombro genuino.
+          </p>
+
+          <div class="mt-16 pt-8 border-t border-border">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-14 h-14 bg-secondary rounded-full flex items-center justify-center text-white font-display font-bold text-2xl"
+              >
+                L
+              </div>
+              <div>
+                <p class="font-bold text-primary text-lg font-display">
+                  Luis J.
+                </p>
+                <p
+                  class="text-sm opacity-60 font-sans uppercase tracking-wider"
+                >
+                  Editor & Curador
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>

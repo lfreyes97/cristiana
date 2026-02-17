@@ -1,0 +1,82 @@
+---
+/**
+ * Disciplines: Horizontal scroll cards showing areas of study.
+ * Alternative to BentoGrid — more compact, scannable.
+ */
+const areas = [
+  {
+    name: "Teología",
+    icon: "i-ph-cross-duotone",
+    desc: "El fundamento de todo",
+    href: "/blog?category=Teología",
+  },
+  {
+    name: "Filosofía",
+    icon: "i-ph-lightbulb-duotone",
+    desc: "Ideas que forman mundos",
+    href: "/blog?category=Filosofía",
+  },
+  {
+    name: "Arte & Literatura",
+    icon: "i-ph-paint-brush-duotone",
+    desc: "Belleza como lenguaje",
+    href: "/blog?category=Arte",
+  },
+  {
+    name: "Ciencia",
+    icon: "i-ph-atom-duotone",
+    desc: "El libro de la naturaleza",
+    href: "/blog?category=Ciencia",
+  },
+  {
+    name: "Historia",
+    icon: "i-ph-clock-duotone",
+    desc: "Memoria que ilumina",
+    href: "/blog?category=Historia",
+  },
+];
+---
+
+<section class="py-20 border-y border-border-subtle">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex justify-between items-end mb-10">
+      <div>
+        <span
+          class="text-secondary font-mono text-xs tracking-[0.3em] uppercase block mb-2"
+        >
+          Exploraciones
+        </span>
+        <h2 class="text-3xl font-display font-bold text-primary">
+          Disciplinas
+        </h2>
+      </div>
+      <a
+        href="/blog"
+        class="hidden md:flex items-center gap-2 text-sm text-text-muted hover:text-secondary transition-colors"
+      >
+        Ver todo <div class="i-ph-arrow-right"></div>
+      </a>
+    </div>
+
+    <div
+      class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-5"
+    >
+      {
+        areas.map((area) => (
+          <a
+            href={area.href}
+            class="group snap-start shrink-0 w-56 md:w-auto bg-surface border-[length:var(--border-width)] border-border-subtle rounded-[var(--radius-lg)] p-6 hover:border-secondary/40 hover:shadow-[var(--shadow-md)] transition-all duration-300"
+          >
+            <div
+              class={`${area.icon} text-3xl text-secondary/70 mb-4 group-hover:scale-110 transition-transform`}
+            />
+            <h3 class="font-display font-bold text-primary text-lg mb-1 group-hover:text-secondary transition-colors">
+              {area.name}
+            </h3>
+            <p class="text-xs text-text-muted">{area.desc}</p>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

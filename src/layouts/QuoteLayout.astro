@@ -1,0 +1,76 @@
+---
+/**
+ * QuoteLayout: Layout for individual cita pages.
+ * MDX content is rendered via <slot />.
+ */
+import Layout from "./Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  author: string;
+  source?: string;
+  category: string;
+  pubDate: Date;
+  tags?: string[];
+}
+const { title, author, source, category, pubDate, tags } = Astro.props;
+
+const dateStr = pubDate.toLocaleDateString("es-ES", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Layout title={`${title} — Citas · Cristianamente`}>
+  <Header />
+
+  <main class="min-h-screen">
+    <article class="max-w-3xl mx-auto px-6 py-16">
+      {/* Header */}
+      <header class="mb-16 text-center">
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <span
+            class="text-xs font-bold uppercase tracking-widest text-secondary"
+          >
+            {category}
+          </span>
+          <span class="w-1 h-1 bg-border rounded-full"></span>
+          <span class="text-xs text-text-muted font-mono">{dateStr}</span>
+        </div>
+
+        <h1
+          class="text-4xl md:text-5xl font-display font-black text-primary leading-tight mb-4"
+        >
+          {title}
+        </h1>
+
+        <p class="text-lg text-text-muted font-serif">
+          Curado de <span class="font-bold not-italic">{author}</span>
+          {source && <span class="italic"> — {source}</span>}
+        </p>
+
+        {
+          tags && tags.length > 0 && (
+            <div class="flex flex-wrap justify-center gap-2 mt-6">
+              {tags.map((tag) => (
+                <span class="px-3 py-1 text-xs font-mono text-text-muted bg-bg-offset rounded-[var(--radius-pill)]">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )
+        }
+      </header>
+
+      {/* MDX Content */}
+      <div class="prose prose-lg max-w-none">
+        <slot />
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

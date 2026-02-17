@@ -1,0 +1,39 @@
+---
+/**
+ * QuoteHero: Full-width dramatic quote for MDX page headers.
+ * Usage in MDX:
+ *   <QuoteHero author="Kuyper">
+ *     No hay un solo centímetro...
+ *   </QuoteHero>
+ */
+interface Props {
+  author?: string;
+  source?: string;
+}
+const { author, source } = Astro.props;
+---
+
+<div class="py-16 text-center">
+  <div class="i-ph-quotes text-4xl text-secondary/30 mx-auto mb-6"></div>
+  <blockquote
+    class="text-3xl md:text-5xl font-display font-bold text-primary leading-tight max-w-3xl mx-auto mb-8"
+  >
+    <slot />
+  </blockquote>
+  {
+    (author || source) && (
+      <div class="flex items-center justify-center gap-3">
+        {author && (
+          <span class="text-sm font-bold text-text-muted font-mono uppercase tracking-widest">
+            — {author}
+          </span>
+        )}
+        {source && (
+          <span class="text-xs text-text-muted opacity-60 italic font-serif">
+            {source}
+          </span>
+        )}
+      </div>
+    )
+  }
+</div>

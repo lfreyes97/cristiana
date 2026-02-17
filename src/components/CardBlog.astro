@@ -1,0 +1,115 @@
+---
+interface Props {
+	title: string;
+	excerpt: string;
+	category: string;
+	date: string;
+	readTime: string;
+	slug: string;
+	icon?: string;
+	image?: string;
+	variant?: "list" | "card";
+}
+
+const {
+	title,
+	excerpt,
+	category,
+	date,
+	readTime,
+	slug,
+	icon = "i-ph-file-text-duotone",
+	image,
+	variant = "list",
+} = Astro.props;
+
+import Pill from "./Pill.astro";
+---
+
+{
+	variant === "list" ? (
+		<article class="group relative grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center bg-surface border-[length:var(--border-width)] border-border-subtle p-2 rounded-[var(--radius-2xl)] hover:shadow-[var(--shadow-lg)] transition-all duration-300">
+			<!-- Image Column -->
+			<div class="md:col-span-4 h-full min-h-[240px] relative overflow-hidden rounded-[var(--radius-xl)] bg-bg-offset">
+				{image ? (
+					<img 
+						src={image} 
+						alt={title} 
+						class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+					/>
+				) : (
+                    <div class="absolute inset-0 flex items-center justify-center bg-bg-offset text-border">
+                        <div class="i-ph-image-duotone text-6xl opacity-20"></div>
+                    </div>
+                )}
+			</div>
+			
+			<!-- Content Column -->
+			<div class="md:col-span-8 pr-4 py-4 flex flex-col items-start gap-4">
+                <div class="flex items-center gap-3 mb-2">
+					<Pill icon={icon} variant="soft">{category}</Pill>
+                    <span class="w-1 h-1 rounded-full bg-text-muted/30"></span>
+                    <span class="text-xs font-medium text-text-muted">{date} · {readTime}</span>
+                </div>
+
+				<h3 class="text-2xl md:text-4xl font-serif font-black text-primary group-hover:text-secondary transition-colors leading-[1.1]">
+					<a href={`/blog/${slug}`} class="before:absolute before:inset-0">
+						{title}
+					</a>
+				</h3>
+				
+				<p class="text-base text-text-muted leading-relaxed line-clamp-2 max-w-2xl">
+					{excerpt}
+				</p>
+				
+				<div class="mt-2 px-5 py-2 rounded-[var(--radius-pill)] border border-primary/20 text-text font-bold text-xs uppercase tracking-wide group-hover:bg-primary group-hover:text-bg group-hover:border-primary transition-all flex items-center gap-2 shadow-sm">
+					Leer artículo <div class="i-ph-arrow-right group-hover:translate-x-1 transition-transform" />
+				</div>
+			</div>
+		</article>
+	) : (
+		<article class="group flex flex-col h-full bg-surface border-[length:var(--border-width)] border-border-subtle rounded-[var(--radius-2xl)] p-2 hover:shadow-[var(--shadow-lg)] transition-all duration-300 relative overflow-hidden">
+            <!-- Image Header -->
+			<div class="h-48 relative overflow-hidden rounded-[var(--radius-xl)] bg-bg-offset mb-4">
+				{image ? (
+					<img 
+						src={image} 
+						alt={title} 
+						class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+					/>
+				) : (
+                    <div class="absolute inset-0 flex items-center justify-center bg-bg-offset text-border">
+                        <div class="i-ph-image-duotone text-4xl opacity-20"></div>
+                    </div>
+                )}
+                <div class="absolute top-4 left-4">
+                     <Pill icon={icon} variant="surface" class="backdrop-blur-md bg-surface/90 shadow-sm border-border-subtle">{category}</Pill>
+                </div>
+			</div>
+			
+            <!-- Card Body -->
+            <div class="px-4 pb-4 flex flex-col flex-grow items-start">
+                 <div class="flex items-center gap-2 mb-3 text-xs font-medium text-text-muted">
+                    <span>{date}</span>
+                    <span class="w-1 h-1 rounded-full bg-text-muted/30"></span>
+                    <span>{readTime}</span>
+                 </div>
+
+                <h3 class="text-xl font-serif font-bold text-primary mb-3 group-hover:text-secondary transition-colors leading-tight">
+                    <a href={`/blog/${slug}`} class="before:absolute before:inset-0">
+                        {title}
+                    </a>
+                </h3>
+                
+                <p class="text-sm text-text-muted leading-relaxed mb-6 flex-grow line-clamp-3">
+                    {excerpt}
+                </p>
+                
+                <div class="mt-auto px-4 py-2 rounded-[var(--radius-pill)] border border-primary/20 text-text font-bold text-[10px] uppercase tracking-wide group-hover:bg-primary group-hover:text-bg group-hover:border-primary transition-all flex items-center gap-2">
+					Leer <div class="i-ph-arrow-right group-hover:translate-x-1 transition-transform" />
+				</div>
+            </div>
+		</article>
+	)
+}
+

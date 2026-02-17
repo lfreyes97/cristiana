@@ -1,0 +1,71 @@
+---
+/**
+ * Sidenote: Tufte-style margin note.
+ * Desktop (≥1280px): floats in the right margin.
+ * Mobile: inline expandable <details>.
+ *
+ * Usage:
+ *   <Sidenote n={1}>Esta idea fue desarrollada por Barth en 1934...</Sidenote>
+ */
+interface Props {
+  n?: number;
+  label?: string;
+}
+const { n, label } = Astro.props;
+const marker = n ? `${n}` : "†";
+---
+
+{/* Desktop: margin note */}
+<span class="sidenote-wrapper">
+  <sup class="sidenote-ref text-secondary font-mono text-xs cursor-help"
+    >{marker}</sup
+  >
+  <span class="sidenote">
+    {
+      label && (
+        <span class="block text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">
+          {label}
+        </span>
+      )
+    }
+    <slot />
+  </span>
+</span>
+
+<style>
+  .sidenote-wrapper {
+    position: relative;
+  }
+
+  .sidenote {
+    /* Mobile: inline */
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-family: var(--font-serif, serif);
+    line-height: 1.5;
+    background: var(--color-bg-offset);
+    border-left: 2px solid var(--color-secondary);
+    padding: 0.5rem 0.75rem;
+    margin: 0.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Desktop: margin positioning */
+  @media (min-width: 1280px) {
+    .sidenote {
+      position: absolute;
+      right: calc(-280px - 2rem);
+      top: -0.25rem;
+      width: 260px;
+      margin: 0;
+      background: transparent;
+      border-left: 1px solid
+        color-mix(in srgb, var(--color-secondary), transparent 70%);
+      padding: 0 0 0 0.75rem;
+      border-radius: 0;
+      font-size: 0.75rem;
+    }
+  }
+</style>

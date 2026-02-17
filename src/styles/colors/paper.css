@@ -1,0 +1,31 @@
+/* ·· Paper (warm / editorial) ································· */
+:root,
+[data-theme="paper"] {
+  --color-bg:             #fdfbf7;
+  --color-bg-offset:      #f5f2eb;
+  --color-surface:        #ffffff;
+  --color-text:           #2c2c2c;
+  --color-text-muted:     #5e5a55;
+  --color-primary:        #1a1a1a;
+  --color-primary-dark:   #000000;
+  --color-secondary:      #8b2e3a;
+  --color-secondary-light:#a83a48;
+  --color-accent:         #d4a373;
+  --color-border:         #e8e6e1;
+  --color-border-subtle:  #f0eeea;
+}
+
+[data-theme="paper"][data-mode="dark"] {
+  --color-bg:             #1c1b1a;
+  --color-bg-offset:      #242220;
+  --color-surface:        #2b2926;
+  --color-text:           #e6e1dc;
+  --color-text-muted:     #a6a09a;
+  --color-primary:        #fdfbf7;
+  --color-primary-dark:   #e8e6e1;
+  --color-secondary:      #d45d6a;
+  --color-secondary-light:#e87a85;
+  --color-accent:         #d4a373;
+  --color-border:         #3d3a36;
+  --color-border-subtle:  #2b2926;
+}

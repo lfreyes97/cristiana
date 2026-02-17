@@ -12,6 +12,27 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.0.0-beta.6"
+    "@astrojs/mdx": "^5.0.0-beta.7",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/svelte": "^7.2.5",
+    "@fontsource/eb-garamond": "^5.2.7",
+    "@fontsource/fraunces": "^5.2.9",
+    "@fontsource/iosevka": "^5.2.5",
+    "@fontsource/urbanist": "^5.2.7",
+    "@myriaddreamin/rehype-typst": "^0.7.0-rc2",
+    "@unocss/astro": "66.6.0",
+    "astro": "^6.0.0-beta.12",
+    "bits-ui": "^2.15.5",
+    "remark-math": "^6.0.0",
+    "svelte": "^5.51.2",
+    "unocss": "66.6.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@iconify-json/ph": "^1.2.2",
+    "typescript": "^5.9.3"
+  },
+  "patchedDependencies": {
+    "@astrojs/rss@4.0.15": "patches/@astrojs%2Frss@4.0.15.patch"
   }
 }

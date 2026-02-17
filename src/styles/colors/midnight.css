@@ -1,0 +1,30 @@
+/* ·· Midnight (sophisticated / minimal) ······················· */
+[data-theme="midnight"] {
+  --color-bg:             #0f1115;
+  --color-bg-offset:      #13151a;
+  --color-surface:        #181a20;
+  --color-text:           #e2e2e2;
+  --color-text-muted:     #9ca3af;
+  --color-primary:        #ffffff;
+  --color-primary-dark:   #e5e7eb;
+  --color-secondary:      #e11d48;
+  --color-secondary-light:#f43f5e;
+  --color-accent:         #bf95f9;
+  --color-border:         #2a2d35;
+  --color-border-subtle:  #1f2229;
+}
+
+[data-theme="midnight"][data-mode="light"] {
+  --color-bg:             #f3f4f6;
+  --color-bg-offset:      #e5e7eb;
+  --color-surface:        #ffffff;
+  --color-text:           #1f2937;
+  --color-text-muted:     #6b7280;
+  --color-primary:        #111827;
+  --color-primary-dark:   #000000;
+  --color-secondary:      #e11d48;
+  --color-secondary-light:#be123c;
+  --color-accent:         #7c3aed;
+  --color-border:         #e5e7eb;
+  --color-border-subtle:  #f3f4f6;
+}

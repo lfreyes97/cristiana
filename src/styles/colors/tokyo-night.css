@@ -1,0 +1,30 @@
+/* ·· Tokyo Night (cool / digital) ····························· */
+[data-theme="tokyo-night"] {
+  --color-bg:             #1a1b26;
+  --color-bg-offset:      #16161e;
+  --color-surface:        #24283b;
+  --color-text:           #a9b1d6;
+  --color-text-muted:     #787c99;
+  --color-primary:        #c0caf5;
+  --color-primary-dark:   #a0a8d6;
+  --color-secondary:      #bb9af7;
+  --color-secondary-light:#9d7cd8;
+  --color-accent:         #7aa2f7;
+  --color-border:         #414868;
+  --color-border-subtle:  #292e42;
+}
+
+[data-theme="tokyo-night"][data-mode="light"] {
+  --color-bg:             #e1e2e7;
+  --color-bg-offset:      #d0d2d8;
+  --color-surface:        #ffffff;
+  --color-text:           #3760bf;
+  --color-text-muted:     #6272a4;
+  --color-primary:        #1a1b26;
+  --color-primary-dark:   #24283b;
+  --color-secondary:      #965027;
+  --color-secondary-light:#b05e2e;
+  --color-accent:         #2e7de9;
+  --color-border:         #a8aecb;
+  --color-border-subtle:  #c0c5dc;
+}

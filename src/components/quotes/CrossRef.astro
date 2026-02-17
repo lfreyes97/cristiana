@@ -1,0 +1,65 @@
+---
+/**
+ * CrossRef: Enriched internal link to another cita or blog post.
+ * Shows a preview card when used in MDX.
+ *
+ * Usage:
+ *   <CrossRef href="/citas/soberania-de-dios" title="Sobre la soberanía de Dios" author="Kuyper">
+ *     Ver las citas relacionadas sobre la soberanía.
+ *   </CrossRef>
+ */
+interface Props {
+  href: string;
+  title: string;
+  author?: string;
+  type?: "cita" | "ensayo" | "debate";
+}
+const { href, title, author, type = "cita" } = Astro.props;
+
+const icons: Record<string, string> = {
+  cita: "i-ph-quotes",
+  ensayo: "i-ph-article",
+  debate: "i-ph-microphone-stage",
+};
+const typeLabels: Record<string, string> = {
+  cita: "Cita",
+  ensayo: "Ensayo",
+  debate: "Debate",
+};
+---
+
+<a href={href} class="group block my-6 no-underline">
+  <div
+    class="flex items-center gap-4 bg-surface border-[length:var(--border-width)] border-border-subtle rounded-[var(--radius-md)] px-5 py-4 hover:border-secondary/40 hover:shadow-[var(--shadow-sm)] transition-all duration-200"
+  >
+    <div
+      class:list={[
+        icons[type] || icons.cita,
+        "text-xl text-secondary/60 shrink-0",
+      ]}
+    >
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center gap-2 mb-0.5">
+        <span
+          class="text-[10px] font-mono font-bold uppercase tracking-widest text-secondary"
+        >
+          {typeLabels[type] || type}
+        </span>
+        {author && <span class="text-[10px] text-text-muted">· {author}</span>}
+      </div>
+      <span
+        class="text-sm font-bold text-primary group-hover:text-secondary transition-colors"
+      >
+        {title}
+      </span>
+      <div class="text-xs text-text-muted font-serif mt-0.5">
+        <slot />
+      </div>
+    </div>
+    <div
+      class="i-ph-arrow-right text-sm text-text-muted group-hover:text-secondary group-hover:translate-x-0.5 transition-all shrink-0"
+    >
+    </div>
+  </div>
+</a>

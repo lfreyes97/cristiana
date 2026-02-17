@@ -1,0 +1,23 @@
+---
+/**
+ * Article: Single article/clause inside a Creed.
+ *
+ * Usage (inside <Creed>):
+ *   <Article n={1}>Creo en un solo Dios...</Article>
+ */
+interface Props {
+  n: number;
+}
+const { n } = Astro.props;
+---
+
+<div class="flex gap-4 py-3 border-b border-border-subtle last:border-b-0">
+  <span
+    class="text-xs font-mono font-bold text-secondary bg-secondary/10 w-8 h-8 flex items-center justify-center rounded-full shrink-0 mt-0.5"
+  >
+    {n}
+  </span>
+  <div class="text-base font-serif text-primary leading-relaxed italic">
+    <slot />
+  </div>
+</div>

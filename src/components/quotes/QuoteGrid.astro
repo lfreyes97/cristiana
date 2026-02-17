@@ -1,0 +1,23 @@
+---
+/**
+ * QuoteGrid: Layout wrapper for arranging QuoteCards in a grid.
+ * Usage in MDX:
+ *   <QuoteGrid cols={3}>
+ *     <QuoteCard ... />
+ *     <QuoteCard ... />
+ *   </QuoteGrid>
+ */
+interface Props {
+  cols?: 2 | 3;
+}
+const { cols = 2 } = Astro.props;
+---
+
+<div
+  class:list={[
+    "grid gap-6 my-12",
+    cols === 3 ? "md:grid-cols-3" : "md:grid-cols-2",
+  ]}
+>
+  <slot />
+</div>

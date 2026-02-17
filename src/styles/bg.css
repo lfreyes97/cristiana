@@ -1,0 +1,62 @@
+/* ── Background Patterns & Image Filters per Theme ─────────────── */
+
+/* Paper */
+:root,
+[data-theme="paper"] {
+  --img-filter:  url(#filter-paper);
+  --bg-pattern:  radial-gradient(circle, rgba(0,0,0,.06) 1.5px, transparent 1.5px);
+  --bg-size:     32px 32px;
+}
+[data-theme="paper"][data-mode="dark"] {
+  --img-filter:  url(#filter-paper);
+  --bg-pattern:  radial-gradient(circle, rgba(255,255,255,.05) 1.5px, transparent 1.5px);
+  --bg-size:     32px 32px;
+}
+
+/* Midnight */
+[data-theme="midnight"] {
+  --img-filter:  url(#filter-midnight);
+  --bg-pattern:  radial-gradient(circle, rgba(255,255,255,.04) 1.5px, transparent 1.5px);
+  --bg-size:     20px 20px;
+}
+[data-theme="midnight"][data-mode="light"] {
+  --img-filter:  url(#filter-midnight);
+  --bg-pattern:  radial-gradient(circle, rgba(0,0,0,.05) 1.5px, transparent 1.5px);
+  --bg-size:     20px 20px;
+}
+
+/* Tokyo Night */
+[data-theme="tokyo-night"] {
+  --img-filter:  url(#filter-tokyo-night);
+  --bg-pattern:  radial-gradient(circle, rgba(255,255,255,.06) 1.5px, transparent 1.5px);
+  --bg-size:     24px 24px;
+}
+[data-theme="tokyo-night"][data-mode="light"] {
+  --img-filter:  url(#filter-tokyo-night);
+  --bg-pattern:  radial-gradient(circle, rgba(0,0,0,.07) 1.5px, transparent 1.5px);
+  --bg-size:     24px 24px;
+}
+
+/* Gruvbox */
+[data-theme="gruvbox"] {
+  --img-filter:  url(#filter-gruvbox);
+  --bg-pattern:  repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(0,0,0,.06) 23px, rgba(0,0,0,.06) 24px);
+  --bg-size:     32px 32px;
+}
+[data-theme="gruvbox"][data-mode="dark"] {
+  --img-filter:  url(#filter-gruvbox);
+  --bg-pattern:  repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(255,255,255,.05) 23px, rgba(255,255,255,.05) 24px);
+  --bg-size:     32px 32px;
+}
+
+/* Nord */
+[data-theme="nord"] {
+  --img-filter:  url(#filter-nord);
+  --bg-pattern:  radial-gradient(circle, rgba(0,0,0,.06) 1px, transparent 1px);
+  --bg-size:     16px 16px;
+}
+[data-theme="nord"][data-mode="dark"] {
+  --img-filter:  url(#filter-nord);
+  --bg-pattern:  radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
+  --bg-size:     16px 16px;
+}

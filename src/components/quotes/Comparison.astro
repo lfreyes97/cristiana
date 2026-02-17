@@ -1,0 +1,85 @@
+---
+/**
+ * Comparison: Side-by-side comparison of two positions/concepts.
+ *
+ * Usage:
+ *   <Comparison
+ *     left={{ title: "Calvinismo", subtitle: "Soberanía de Dios" }}
+ *     right={{ title: "Arminianismo", subtitle: "Libre albedrío" }}>
+ *     <Col slot="left">
+ *       - Elección incondicional
+ *       - Gracia irresistible
+ *     </Col>
+ *     <Col slot="right">
+ *       - Elección condicional
+ *       - Gracia resistible
+ *     </Col>
+ *   </Comparison>
+ */
+interface Props {
+  left: { title: string; subtitle?: string };
+  right: { title: string; subtitle?: string };
+  versus?: string;
+}
+const {
+  left = { title: "A" },
+  right = { title: "B" },
+  versus = "vs",
+} = Astro.props;
+---
+
+<div class="my-12">
+  <div
+    class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-0 border-[length:var(--border-width)] border-border rounded-[var(--radius-lg)] overflow-hidden"
+  >
+    {/* Left column header */}
+    <div class="bg-secondary/8 px-6 py-4 border-b border-border-subtle">
+      <h4 class="text-sm font-bold text-secondary">{left.title}</h4>
+      {
+        left.subtitle && (
+          <p class="text-[10px] text-text-muted font-mono uppercase tracking-widest">
+            {left.subtitle}
+          </p>
+        )
+      }
+    </div>
+
+    {/* Center divider header */}
+    <div
+      class="hidden md:flex items-center justify-center px-3 bg-bg-offset border-b border-border-subtle"
+    >
+      <span class="text-[10px] font-mono font-bold text-text-muted uppercase"
+        >{versus}</span
+      >
+    </div>
+
+    {/* Right column header */}
+    <div class="bg-accent/8 px-6 py-4 border-b border-border-subtle">
+      <h4 class="text-sm font-bold text-accent">{right.title}</h4>
+      {
+        right.subtitle && (
+          <p class="text-[10px] text-text-muted font-mono uppercase tracking-widest">
+            {right.subtitle}
+          </p>
+        )
+      }
+    </div>
+
+    {/* Left content */}
+    <div
+      class="px-6 py-5 text-sm font-serif text-primary leading-relaxed [&>ul]:space-y-2 [&>ul]:list-disc [&>ul]:pl-4 [&>p]:mb-2"
+    >
+      <slot name="left" />
+    </div>
+
+    {/* Center divider */}
+    <div class="hidden md:block w-px bg-border-subtle"></div>
+
+    {/* Right content */}
+    <div
+      class="px-6 py-5 text-sm font-serif text-primary leading-relaxed border-t md:border-t-0 border-border-subtle [&>ul]:space-y-2 [&>ul]:list-disc [&>ul]:pl-4 [&>p]:mb-2"
+    >
+      <slot name="right" />
+    </div>
+  </div>
+</div>

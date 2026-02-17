@@ -1,0 +1,29 @@
+---
+/**
+ * Turn: Single speaker turn inside a Dialogue.
+ *
+ * Usage (inside <Dialogue>):
+ *   <Turn speaker="Sócrates">¿Qué es la verdad?</Turn>
+ */
+interface Props {
+  speaker: string;
+}
+const { speaker } = Astro.props;
+---
+
+<div class="relative pl-8 py-4 group">
+  {/* Dot on the timeline */}
+  <div
+    class="absolute -left-[5px] top-6 w-2 h-2 rounded-full bg-secondary border-2 border-bg"
+  >
+  </div>
+
+  <span
+    class="text-xs font-bold uppercase tracking-widest text-secondary block mb-1"
+  >
+    {speaker}
+  </span>
+  <div class="text-base font-serif text-primary leading-relaxed">
+    <slot />
+  </div>
+</div>

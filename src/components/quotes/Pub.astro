@@ -1,0 +1,49 @@
+---
+/**
+ * Pub: Audience/public question in a Debate.
+ * Centered but visually distinct from moderator — shows it comes from the audience.
+ *
+ * Usage (inside <Debate>):
+ *   <Pub speaker="Estudiante" ts="00:22">¿Cómo define usted «causa»?</Pub>
+ */
+interface Props {
+  speaker?: string;
+  ts?: string;
+}
+const { speaker = "Público", ts } = Astro.props;
+---
+
+<div class="flex justify-center relative">
+  {/* Timeline triangle */}
+  <div class="absolute left-1/2 top-3 -translate-x-1/2 hidden md:block z-10">
+    <div
+      class="w-0 h-0 border-l-[5px] border-r-[5px] border-b-[6px] border-l-transparent border-r-transparent border-b-text-muted/50"
+    >
+    </div>
+  </div>
+
+  <div class="max-w-md w-full text-center">
+    {
+      ts && (
+        <span class="text-[10px] font-mono text-text-muted mb-1 block">
+          {ts}
+        </span>
+      )
+    }
+    <div
+      class="bg-surface border border-border rounded-[var(--radius-md)] px-5 py-3 shadow-[var(--shadow-sm)]"
+    >
+      <div class="flex items-center justify-center gap-2 mb-1">
+        <div class="i-ph-hand-waving text-xs text-text-muted"></div>
+        <span
+          class="text-[10px] font-bold uppercase tracking-widest text-text-muted"
+        >
+          {speaker}
+        </span>
+      </div>
+      <div class="text-sm font-serif italic text-primary leading-relaxed">
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>

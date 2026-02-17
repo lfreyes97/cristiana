@@ -1,0 +1,75 @@
+---
+/**
+ * FeaturedPost: Magazine-style single post hero.
+ * Shows the latest/best post as a large editorial feature.
+ */
+interface Props {
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  slug: string;
+  heroImage?: string;
+}
+const { title, excerpt, category, date, slug, heroImage } = Astro.props;
+---
+
+<section class="py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <span
+      class="text-secondary font-mono text-xs tracking-[0.3em] uppercase block mb-8"
+    >
+      Último ensayo
+    </span>
+
+    <a href={`/blog/${slug}`} class="group block">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        {/* Image */}
+        {
+          heroImage && (
+            <div class="aspect-[4/3] overflow-hidden rounded-[var(--radius-lg)] border-[length:var(--border-width)] border-border-subtle shadow-[var(--shadow-md)]">
+              <img
+                src={heroImage}
+                alt={title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+          )
+        }
+
+        {/* Content */}
+        <div class:list={[!heroImage && "md:col-span-2 max-w-2xl"]}>
+          <div class="flex items-center gap-3 mb-4">
+            <span
+              class="text-xs font-bold uppercase tracking-widest text-secondary"
+            >
+              {category}
+            </span>
+            <span class="w-1 h-1 bg-border rounded-full"></span>
+            <span class="text-xs text-text-muted font-mono">{date}</span>
+          </div>
+
+          <h2
+            class="text-4xl md:text-5xl font-display font-black text-primary leading-tight mb-6 group-hover:text-secondary transition-colors duration-300"
+          >
+            {title}
+          </h2>
+
+          <p class="text-lg text-text-muted font-serif leading-relaxed mb-8">
+            {excerpt}
+          </p>
+
+          <span
+            class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-primary group-hover:text-secondary transition-colors"
+          >
+            Leer ensayo
+            <div
+              class="i-ph-arrow-right group-hover:translate-x-1 transition-transform"
+            >
+            </div>
+          </span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>

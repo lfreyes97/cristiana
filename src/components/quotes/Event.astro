@@ -1,0 +1,38 @@
+---
+/**
+ * Event: Single event in a Timeline.
+ *
+ * Usage (inside <Timeline>):
+ *   <Event year="325" label="Concilio de Nicea">Descripción...</Event>
+ */
+interface Props {
+  year: string;
+  label: string;
+  icon?: string;
+}
+const { year, label, icon } = Astro.props;
+---
+
+<div class="relative pb-10 last:pb-0">
+  {/* Dot on timeline */}
+  <div
+    class="absolute -left-[calc(2rem+5px)] top-1 w-3 h-3 rounded-full bg-secondary border-2 border-bg"
+  >
+  </div>
+
+  {/* Year badge */}
+  <span
+    class="inline-block text-[10px] font-mono font-bold uppercase tracking-widest text-secondary bg-secondary/10 px-2 py-0.5 rounded-[var(--radius-pill)] mb-2"
+  >
+    {year}
+  </span>
+
+  <h4 class="text-base font-bold text-primary mb-1 flex items-center gap-2">
+    {icon && <div class:list={[icon, "text-sm text-accent"]} />}
+    {label}
+  </h4>
+
+  <div class="text-sm text-text-muted font-serif leading-relaxed [&>p]:mb-2">
+    <slot />
+  </div>
+</div>

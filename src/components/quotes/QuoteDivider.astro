@@ -1,0 +1,25 @@
+---
+/**
+ * QuoteDivider: Decorative section separator for MDX.
+ * Usage in MDX:
+ *   <QuoteDivider label="Sobre la fe" />
+ */
+interface Props {
+  label?: string;
+}
+const { label } = Astro.props;
+---
+
+<div class="my-16 flex items-center gap-4">
+  <div class="flex-1 h-px bg-border"></div>
+  {
+    label ? (
+      <span class="text-xs font-bold uppercase tracking-widest text-text-muted">
+        {label}
+      </span>
+    ) : (
+      <div class="w-2 h-2 bg-secondary rotate-45" />
+    )
+  }
+  <div class="flex-1 h-px bg-border"></div>
+</div>

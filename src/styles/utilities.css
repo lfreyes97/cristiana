@@ -1,0 +1,18 @@
+/* ── Utilities ─────────────────────────────────────────────────── */
+
+/* Typst math SVGs */
+.typst-doc                { color: var(--color-text); max-width: 100%; height: auto; }
+.typst-doc g,
+.typst-doc path           { fill: currentColor !important; }
+
+/* Glass surfaces */
+[data-style="glass"] .bg-surface,
+[data-style="glass"] .glass {
+  background-color: color-mix(in srgb, var(--color-surface), transparent 40%) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--color-text), transparent 90%);
+  box-shadow:
+    0 4px 30px rgba(0,0,0,.1),
+    inset 0 0 0 1px rgba(255,255,255,.1);
+}
