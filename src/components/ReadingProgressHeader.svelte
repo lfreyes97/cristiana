@@ -191,6 +191,6 @@
   <!-- Progress Bar -->
   <div
     class="absolute bottom-0 left-0 h-[3px] bg-[var(--color-secondary)] transition-all duration-100 ease-out z-50"
-    style="width: {progress}%"
+    style="width: {`${progress}%`}"
   ></div>
 </div>

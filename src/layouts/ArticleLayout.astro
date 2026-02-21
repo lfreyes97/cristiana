@@ -1,6 +1,6 @@
 ---
 import Layout from "./Layout.astro";
-import Header from "../components/Header.astro";
+import ReadingProgressHeader from "../components/ReadingProgressHeader.svelte";
 import Footer from "../components/Footer.astro";
 
 interface Props {
@@ -23,7 +23,7 @@ const {
 ---
 
 <Layout title={title}>
-  <Header />
+  <ReadingProgressHeader client:load title={title} headings={headings} />
 
   <main class="pt-8 pb-24 min-h-screen">
     <article class="max-w-3xl mx-auto px-6">

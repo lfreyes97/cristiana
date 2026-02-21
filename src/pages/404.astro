@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ReadingProgressHeader from "../components/ReadingProgressHeader.svelte";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="404 — No Encontrado">
+  <ReadingProgressHeader
+    client:load
+    title="404 — No Encontrado"
+    headings={[]}
+  />
+
+  <main
+    class="wrapper min-h-[70vh] flex flex-col items-center justify-center text-center py-20"
+  >
+    <div
+      class="i-ph-compass-rose-duotone text-6xl text-primary mb-6 animate-pulse"
+    >
+    </div>
+    <h1
+      class="text-display text-8xl md:text-9xl font-bold tracking-tighter text-text mb-4"
+    >
+      404
+    </h1>
+    <h2
+      class="text-2xl md:text-3xl font-serif text-text-muted mb-8 max-w-lg mx-auto"
+    >
+      ¿Perdiste el camino?
+    </h2>
+    <p class="text-body text-text-muted mb-10 max-w-md mx-auto">
+      Prueba volver al inicio, y que no se te olvide: <strong
+        >Cristo es el camino.</strong
+      >
+    </p>
+
+    <a href="/" class="btn flex items-center gap-2 mx-auto w-fit">
+      <div class="i-ph-house-duotone text-lg"></div>
+      <span>Volver al Inicio</span>
+    </a>
+  </main>
+
+  <Footer />
+</Layout>

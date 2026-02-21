@@ -4,7 +4,7 @@
  * MDX content is rendered via <slot />.
  */
 import Layout from "./Layout.astro";
-import Header from "../components/Header.astro";
+import ReadingProgressHeader from "../components/ReadingProgressHeader.svelte";
 import Footer from "../components/Footer.astro";
 
 interface Props {
@@ -25,7 +25,7 @@ const dateStr = pubDate.toLocaleDateString("es-ES", {
 ---
 
 <Layout title={`${title} — Citas · Cristianamente`}>
-  <Header />
+  <ReadingProgressHeader client:load title={title} headings={[]} />
 
   <main class="min-h-screen">
     <article class="max-w-3xl mx-auto px-6 py-16">
