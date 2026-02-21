@@ -1,0 +1,30 @@
+/* ·· Earth (natural / warm) ··································· */
+[data-theme="earth"] {
+  --color-bg:             #f4eee0;
+  --color-bg-offset:      #eaddc5;
+  --color-surface:        #faf7f2;
+  --color-text:           #3e362e;
+  --color-text-muted:     #6b5d50;
+  --color-primary:        #5c6b5d;
+  --color-primary-dark:   #434e44;
+  --color-secondary:      #8c5a45;
+  --color-secondary-light:#a66f58;
+  --color-accent:         #5c6b5d;
+  --color-border:         #d1c7b8;
+  --color-border-subtle:  #e3dbcd;
+}
+
+[data-theme="earth"][data-mode="dark"] {
+  --color-bg:             #2a2421;
+  --color-bg-offset:      #211c1a;
+  --color-surface:        #362f2c;
+  --color-text:           #e8e1da;
+  --color-text-muted:     #a3978c;
+  --color-primary:        #8ea387;
+  --color-primary-dark:   #afc4a8;
+  --color-secondary:      #c48c71;
+  --color-secondary-light:#dca78d;
+  --color-accent:         #8ea387;
+  --color-border:         #4a423e;
+  --color-border-subtle:  #3d3632;
+}

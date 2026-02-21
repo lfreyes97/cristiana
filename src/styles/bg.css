@@ -60,3 +60,38 @@
   --bg-pattern:  radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
   --bg-size:     16px 16px;
 }
+/* Pastel */
+[data-theme="pastel"] {
+  --img-filter:  url(#filter-pastel);
+  --bg-pattern:  radial-gradient(circle, rgba(0,0,0,.04) 1.5px, transparent 1.5px);
+  --bg-size:     24px 24px;
+}
+[data-theme="pastel"][data-mode="dark"] {
+  --img-filter:  url(#filter-pastel);
+  --bg-pattern:  radial-gradient(circle, rgba(255,255,255,.05) 1.5px, transparent 1.5px);
+  --bg-size:     24px 24px;
+}
+
+/* Earth */
+[data-theme="earth"] {
+  --img-filter:  url(#filter-earth);
+  --bg-pattern:  radial-gradient(circle, rgba(0,0,0,.05) 1px, transparent 1px);
+  --bg-size:     16px 16px;
+}
+[data-theme="earth"][data-mode="dark"] {
+  --img-filter:  url(#filter-earth);
+  --bg-pattern:  radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
+  --bg-size:     16px 16px;
+}
+
+/* Neutral */
+[data-theme="neutral"] {
+  --img-filter:  none;
+  --bg-pattern:  radial-gradient(circle, rgba(0,0,0,.03) 1.5px, transparent 1.5px);
+  --bg-size:     32px 32px;
+}
+[data-theme="neutral"][data-mode="dark"] {
+  --img-filter:  none;
+  --bg-pattern:  radial-gradient(circle, rgba(255,255,255,.04) 1.5px, transparent 1.5px);
+  --bg-size:     32px 32px;
+}

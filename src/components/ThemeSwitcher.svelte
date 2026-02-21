@@ -33,6 +33,21 @@
       label: "Nord",
       description: "Fresco y polar",
     },
+    {
+      id: "pastel",
+      label: "Pastel",
+      description: "Suave y onírico",
+    },
+    {
+      id: "earth",
+      label: "Tierras",
+      description: "Natural y cálido",
+    },
+    {
+      id: "neutral",
+      label: "Neutral",
+      description: "Tailwind monocromo",
+    },
   ];
 
   const uiStyles = [

@@ -1,0 +1,30 @@
+/* ·· Pastel (soft / dreamlike) ································ */
+[data-theme="pastel"] {
+  --color-bg:             #fdf6f5;
+  --color-bg-offset:      #f4e9eb;
+  --color-surface:        #ffffff;
+  --color-text:           #4a4453;
+  --color-text-muted:     #786c82;
+  --color-primary:        #b5838d;
+  --color-primary-dark:   #916971;
+  --color-secondary:      #e5989b;
+  --color-secondary-light:#ffb4a2;
+  --color-accent:         #6d6875;
+  --color-border:         #ebd8d8;
+  --color-border-subtle:  #f4e6e6;
+}
+
+[data-theme="pastel"][data-mode="dark"] {
+  --color-bg:             #2b2836;
+  --color-bg-offset:      #23212b;
+  --color-surface:        #343040;
+  --color-text:           #f4f1f8;
+  --color-text-muted:     #bcadce;
+  --color-primary:        #ffb4a2;
+  --color-primary-dark:   #e5989b;
+  --color-secondary:      #b5838d;
+  --color-secondary-light:#e5989b;
+  --color-accent:         #ffb4a2;
+  --color-border:         #4a445b;
+  --color-border-subtle:  #3d384c;
+}
