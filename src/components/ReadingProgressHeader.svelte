@@ -115,11 +115,9 @@
 
 <!-- STICKY READING BAR (Slides in) -->
 <div
-  class="fixed top-0 left-0 w-full z-50 bg-[var(--color-bg)]/95 backdrop-blur-md border-b border-[var(--color-border)] transition-all duration-500 ease-out shadow-sm transform"
-  class:translate-y-0={isReadingMode}
-  class:-translate-y-full={!isReadingMode}
-  class:opacity-0={!isReadingMode}
-  class:invisible={!isReadingMode}
+  class="fixed top-0 left-0 w-full z-50 bg-[var(--color-bg)]/95 backdrop-blur-md border-b border-[var(--color-border)] transition-all duration-500 ease-out shadow-sm transform {isReadingMode
+    ? 'translate-y-0 opacity-100 visible'
+    : '-translate-y-full opacity-0 invisible'}"
 >
   <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
     <!-- Left Side: Title -->

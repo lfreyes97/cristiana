@@ -128,7 +128,8 @@
           <span>{mode === "light" ? "Claro" : "Oscuro"}</span>
           {#if mode === "light"}
             <div class="i-ph-sun-duotone text-sm"></div>
-          {:else}
+          {/if}
+          {#if mode === "dark"}
             <div class="i-ph-moon-duotone text-sm"></div>
           {/if}
         </button>

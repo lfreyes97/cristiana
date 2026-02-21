@@ -6,19 +6,26 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs { inherit system; };
 
         # Create an FHS environment to run binaries like workerd
         fhs = pkgs.buildFHSUserEnv {
           name = "fhs-shell";
-          targetPkgs = pkgs: with pkgs; [
-            bun
-            nodejs_22
-            # Add libs commonly needed by prebuilt binaries
-          ];
+          targetPkgs =
+            pkgs: with pkgs; [
+              bun
+              nodejs_22
+              # Add libs commonly needed by prebuilt binaries
+            ];
           runScript = "zsh";
         };
       in
@@ -27,8 +34,9 @@
           buildInputs = [
             pkgs.bun
             pkgs.nodejs_22
+            pkgs.pnpm
             # Use steam-run as a quick wrapper if FHS is too heavy
-            pkgs.steam-run
+            #pkgs.steam-run
           ];
 
           shellHook = ''
