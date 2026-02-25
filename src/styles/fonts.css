@@ -1,10 +1,6 @@
-/* ── Fonts ─────────────────────────────────────────────────────── */
-
-@import "@fontsource/fraunces/400.css";
-@import "@fontsource/fraunces/700.css";
-@import "@fontsource/fraunces/900.css";
-@import "@fontsource/fraunces/400-italic.css";
-@import "@fontsource/fraunces/700-italic.css";
+/* Variable font — expone ejes: wght (100–900), SOFT (0–100), WONK (0–1), opsz (12–144) */
+@import "@fontsource-variable/fraunces/full.css";
+@import "@fontsource-variable/fraunces/full-italic.css";
 
 @import "@fontsource/urbanist/300.css";
 @import "@fontsource/urbanist/400.css";

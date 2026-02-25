@@ -1,4 +1,59 @@
+/* ── Fraunces Variable Font Axes ─────────────────────────────── */
+/*
+  Estos tokens se mutan desde JS (themeStore) para controlar los ejes de Fraunces.
+  Ejes disponibles:
+    WONK  0–1    — letras "traviesas" / quirky (exclusivo de Fraunces)
+    SOFT  0–100  — formas redondeadas vs. angulares
+    opsz  12–144 — optical size (detalle en letra grande, claridad en pequeña)
+    wght  100–900 — peso
+*/
+/* 
+  Técnica "Before/After" de herencia de ejes:
+  Definimos cada eje como una variable individual. 
+  Las clases aplican font-variation-settings referenciando todas estas variables.
+  Esto evita que al cambiar WONK se resetee el SOFT o el opsz.
+*/
+:root {
+  --fr-wonk: 0;
+  --fr-soft: 0;
+  --fr-opsz: 72;
+  --fr-wght: 400; /* Se hereda del font-weight si el navegador lo soporta, o se setea aquí */
+}
+
+/* Aplicación global a cualquier elemento que use Fraunces */
+.font-display, 
+[class*="font-display"],
+[style*="Fraunces"],
+.fraunces-variable {
+  font-family: 'Fraunces Variable', serif !important;
+  font-variation-settings: 
+    "WONK" var(--fr-wonk), 
+    "SOFT" var(--fr-soft), 
+    "opsz" var(--fr-opsz),
+    "wght" var(--fr-wght);
+}
+
+/* Utilidades de escala óptica dinámica */
+.fraunces-display { --fr-opsz: 144; }
+.fraunces-heading { --fr-opsz: 72;  }
+.fraunces-body    { --fr-opsz: 24;  }
+.fraunces-caption { --fr-opsz: 12;  }
+
+/* Soporte para heredar el font-weight de UnoCSS/Tailwind */
+.font-100 { --fr-wght: 100; }
+.font-200 { --fr-wght: 200; }
+.font-300 { --fr-wght: 300; }
+.font-400 { --fr-wght: 400; }
+.font-500 { --fr-wght: 500; }
+.font-600 { --fr-wght: 600; }
+.font-700 { --fr-wght: 700; }
+.font-800 { --fr-wght: 800; }
+.font-900 { --fr-wght: 900; }
+.font-bold { --fr-wght: 700; }
+.font-black { --fr-wght: 900; }
+
 /* ── Utilities ─────────────────────────────────────────────────── */
+
 
 /* Typst math SVGs */
 .typst-doc                { color: var(--color-text); max-width: 100%; height: auto; }

@@ -23,7 +23,7 @@ export default defineConfig({
       fonts: {
         sans: "Urbanist",
         serif: "EB Garamond",
-        display: "Fraunces",
+        display: "Fraunces Variable",
         mono: "Iosevka",
       },
     }),

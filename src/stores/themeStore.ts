@@ -37,6 +37,9 @@ export const theme = writable<string>("paper");
 export const mode = writable<string>("light");
 export const style = writable<string>("modern");
 
+// Fraunces variable font axes
+export const fraunces = writable({ wonk: 0, soft: 0, opsz: 72 });
+
 // ── DOM sync ─────────────────────────────────────────────────────
 function updateDOM(t: string, m: string, s: string) {
   document.documentElement.dataset.theme = t;
@@ -49,6 +52,13 @@ function updateDOM(t: string, m: string, s: string) {
   }
 }
 
+function updateFrauncesDom(wonk: number, soft: number, opsz: number) {
+  const root = document.documentElement;
+  root.style.setProperty("--fr-wonk", String(wonk));
+  root.style.setProperty("--fr-soft", String(soft));
+  root.style.setProperty("--fr-opsz", String(opsz));
+}
+
 // ── Actions ──────────────────────────────────────────────────────
 export function initTheme() {
   const t = localStorage.getItem("theme") || "paper";
@@ -58,6 +68,13 @@ export function initTheme() {
   mode.set(m);
   style.set(s);
   updateDOM(t, m, s);
+
+  // Fraunces axes
+  const wonk = parseFloat(localStorage.getItem("fr-wonk") || "0");
+  const soft = parseFloat(localStorage.getItem("fr-soft") || "0");
+  const opsz = parseFloat(localStorage.getItem("fr-opsz") || "72");
+  fraunces.set({ wonk, soft, opsz });
+  updateFrauncesDom(wonk, soft, opsz);
 }
 
 export function setSchema(newTheme: string) {
@@ -78,3 +95,19 @@ export function toggleMode() {
   localStorage.setItem("mode", next);
   updateDOM(get(theme), next, get(style));
 }
+
+export function setFraunces(wonk: number, soft: number, opsz: number) {
+  fraunces.set({ wonk, soft, opsz });
+  localStorage.setItem("fr-wonk", String(wonk));
+  localStorage.setItem("fr-soft", String(soft));
+  localStorage.setItem("fr-opsz", String(opsz));
+  updateFrauncesDom(wonk, soft, opsz);
+}
+
+// Presets de personalidad tipográfica
+export const frauncesPresets = [
+  { id: "clasica", label: "Clásica", wonk: 0, soft: 0, opsz: 72 },
+  { id: "suave", label: "Suave", wonk: 0, soft: 80, opsz: 72 },
+  { id: "traviesa", label: "Traviesa", wonk: 1, soft: 0, opsz: 144 },
+  { id: "onírica", label: "Onírica", wonk: 1, soft: 100, opsz: 36 },
+];
