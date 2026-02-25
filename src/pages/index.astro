@@ -7,7 +7,8 @@
  *   2. Disciplines    — horizontal scroll / 5-col grid
  *   3. FeaturedPost   — magazine hero for latest post
  *   4. EditorialFeatures — remaining posts as list
- *   5. Manifesto      — Kuyper quote closer
+ *   5. QuoteCarousel  — rotating gallery of key quotes
+ *   6. Manifesto      — Kuyper quote closer
  *
  * To test: rename this to index.astro and the current one to index.v1.astro
  */
@@ -19,7 +20,46 @@ import Disciplines from "../components/Disciplines.astro";
 import FeaturedPost from "../components/FeaturedPost.astro";
 import EditorialFeatures from "../components/EditorialFeatures.astro";
 import Manifesto from "../components/Manifesto.astro";
+import QuoteCarousel from "../components/QuoteCarousel.svelte";
 import Footer from "../components/Footer.astro";
+
+const homeQuotes = [
+  {
+    text: "No hay un solo centímetro cuadrado en todo el dominio de nuestra existencia humana sobre el cual Cristo, que es Soberano sobre todo, no grite: ¡Mío!",
+    author: "Abraham Kuyper",
+    source: "Discurso inaugural, Universidad Libre de Ámsterdam",
+    year: "1880",
+    category: "Soberanía",
+  },
+  {
+    text: "El Cristianismo no es solo una manera de ser salvo; es una manera de ver y entender todo lo que existe.",
+    author: "J. Gresham Machen",
+    source: "Educación, Cristianismo y Estado",
+    year: "1933",
+    category: "Cosmovisión",
+  },
+  {
+    text: "No es que seamos demasiado exigentes, sino que nos conformamos con demasiado poco. Somos criaturas tibias que pierden el tiempo cuando se les ofrece una alegría infinita.",
+    author: "C. S. Lewis",
+    source: "El peso de la gloria",
+    year: "1949",
+    category: "Deseo",
+  },
+  {
+    text: "Nos hiciste, Señor, para ti, y nuestro corazón está inquieto hasta que descanse en ti.",
+    author: "Agustín de Hipona",
+    source: "Confesiones, I.1",
+    year: "397",
+    category: "Fe",
+  },
+  {
+    text: "Toda inteligibilidad presupone un fundamento trascendente. La cosmovisión cristiana provee ese fundamento de manera única.",
+    author: "Cornelius Van Til",
+    source: "Apologética cristiana",
+    year: "1976",
+    category: "Apologética",
+  },
+];
 
 const allPosts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -64,6 +104,16 @@ const morePosts = rest.slice(0, 3).map((post) => ({
     <Disciplines />
     <FeaturedPost {...latestPost} />
     <EditorialFeatures posts={morePosts} />
+
+    <div class="border-t border-border-subtle">
+      <QuoteCarousel
+        client:visible
+        quotes={homeQuotes}
+        label="Voces que inspiran"
+        autoplayMs={7000}
+      />
+    </div>
+
     <Manifesto />
   </main>
 

@@ -1,0 +1,86 @@
+---
+/**
+ * ThreePaths: A section explaining Machen's three proposed solutions:
+ * Subordination, Destruction, and Consecration.
+ */
+const paths = [
+  {
+    title: "Subordinación",
+    subtitle: "El camino del naturalismo",
+    desc: "Intentar ajustar el cristianismo a las modas intelectuales, eliminando lo sobrenatural y convirtiendo la fe en un subproducto de la cultura.",
+    status: "Rechazado",
+    icon: "i-ph-link-break-duotone",
+    accent: "text-text-muted",
+  },
+  {
+    title: "Destrucción",
+    subtitle: "El camino del aislacionismo",
+    desc: "Huir del conocimiento y la belleza por miedo al error, retirándose a un monasticismo intelectual que abandona el mundo a sus propios dispositivos.",
+    status: "Rechazado",
+    icon: "i-ph-prohibit-duotone",
+    accent: "text-text-muted",
+  },
+  {
+    title: "Consagración",
+    subtitle: "El camino del Evangelio",
+    desc: "Cultivar las artes y las ciencias con entusiasmo, sometiendo cada pensamiento a la obediencia de Cristo y usándolas para el avance del Reino.",
+    status: "Abrazado",
+    icon: "i-ph-sparkle-duotone",
+    accent: "text-secondary",
+  },
+];
+---
+
+<section class="py-24 bg-bg-offset/30">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <span
+        class="text-secondary font-mono text-xs tracking-[0.3em] uppercase block mb-4"
+        >La Estrategia Machen</span
+      >
+      <h2
+        class="text-4xl md:text-5xl font-display font-black text-primary tracking-tight"
+      >
+        Tres respuestas a la cultura
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {
+        paths.map((path) => (
+          <div
+            class={`relative group p-8 bg-surface border-[length:var(--border-width)] border-border rounded-[var(--radius-lg)] transition-all duration-300 hover:shadow-[var(--shadow-md)] ${path.title === "Consagración" ? "ring-2 ring-secondary/20 border-secondary/30" : ""}`}
+          >
+            <div
+              class={`${path.icon} text-4xl ${path.accent} mb-6 transition-transform group-hover:scale-110`}
+            />
+
+            <div class="mb-4">
+              <span
+                class={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border border-current ${path.accent === "text-secondary" ? "bg-secondary/10 text-secondary" : "bg-text-muted/10 text-text-muted"}`}
+              >
+                {path.status}
+              </span>
+            </div>
+
+            <h3 class="text-2xl font-display font-bold text-primary mb-2">
+              {path.title}
+            </h3>
+            <p class="text-sm font-bold text-secondary/60 uppercase tracking-wider mb-4 font-sans">
+              {path.subtitle}
+            </p>
+            <p class="text-text-muted font-serif leading-relaxed text-sm">
+              {path.desc}
+            </p>
+
+            {path.title === "Consagración" && (
+              <div class="absolute -top-3 -right-3 bg-secondary text-white p-2 rounded-full shadow-lg">
+                <div class="i-ph-check-bold text-xs" />
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

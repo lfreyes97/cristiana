@@ -71,7 +71,12 @@
         <div class="i-ph-magnifying-glass text-lg"></div>
         <span class="hidden lg:inline">Buscar</span>
       </div>
-      <ThemeSwitcher />
+      {#if !isReadingMode}
+        <ThemeSwitcher />
+      {:else}
+        <div class="w-[88px]"></div>
+        <!-- Placeholder -->
+      {/if}
     </div>
   </div>
 
@@ -182,7 +187,12 @@
       {/if}
 
       <div class="w-px h-6 bg-[var(--color-border)] hidden md:block"></div>
-      <ThemeSwitcher />
+      {#if isReadingMode}
+        <ThemeSwitcher />
+      {:else}
+        <div class="w-[88px]"></div>
+        <!-- Placeholder for layout stability -->
+      {/if}
     </div>
   </div>
 

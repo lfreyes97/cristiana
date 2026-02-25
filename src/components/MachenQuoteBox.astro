@@ -1,0 +1,47 @@
+---
+/**
+ * MachenQuoteBox: A stylized callout for academic quotes.
+ * Uses a double-border and distinct typography for a "vintage book" feel.
+ */
+interface Props {
+  quote: string;
+  source?: string;
+  year?: string;
+}
+const { quote, source = "J. Gresham Machen", year = "1912" } = Astro.props;
+---
+
+<div class="my-16 relative">
+  <!-- Double border container -->
+  <div class="border border-border p-1 rounded-[var(--radius-sm)]">
+    <div class="border-[length:var(--border-width)] border-border bg-surface p-10 md:p-16 rounded-[var(--radius-sm)] relative">
+      
+      <!-- Top quote mark -->
+      <div class="absolute -top-6 left-10 text-6xl text-secondary/20 font-serif leading-none italic">
+        &ldquo;
+      </div>
+
+      <div class="space-y-6">
+        <p class="text-xl md:text-2xl lg:text-3xl font-serif italic text-primary leading-relaxed indent-8">
+          {quote}
+        </p>
+        
+        <div class="flex items-center gap-4 pt-4">
+          <div class="h-px flex-1 bg-border/60"></div>
+          <footer class="text-xs font-mono uppercase tracking-[0.2em] text-text-muted">
+            <span class="font-bold text-primary">{source}</span>
+            {year && <span class="mx-2">&middot;</span> <span class="opacity-60">{year}</span>}
+          </footer>
+        </div>
+      </div>
+
+      <!-- Bottom quote mark -->
+      <div class="absolute -bottom-10 right-10 text-6xl text-secondary/20 font-serif leading-none italic">
+        &rdquo;
+      </div>
+    </div>
+  </div>
+  
+  <!-- Subtle shadow / lift -->
+  <div class="absolute -inset-px bg-primary/5 -z-10 blur-xl opacity-50 rounded-[var(--radius-sm)]"></div>
+</div>
