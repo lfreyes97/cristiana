@@ -23,7 +23,7 @@
           targetPkgs =
             pkgs: with pkgs; [
               bun
-              nodejs_22
+              nodejs_24
               # Add libs commonly needed by prebuilt binaries
             ];
           runScript = "zsh";
