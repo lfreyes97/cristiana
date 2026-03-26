@@ -8,6 +8,7 @@ import {
   transformerVariantGroup,
   presetWind4,
 } from "unocss";
+import ph from "@iconify-json/ph/icons.json";
 
 export default defineConfig({
   presets: [
@@ -15,7 +16,9 @@ export default defineConfig({
     presetAttributify(),
     presetIcons({
       scale: 1.2,
-      cdn: "https://esm.sh/",
+      collections: {
+        ph,
+      },
     }),
     presetTypography(),
     presetWebFonts({

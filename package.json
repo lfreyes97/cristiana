@@ -12,27 +12,35 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.7-beta.1",
-    "@astrojs/mdx": "5.0.0-beta.8",
-    "@astrojs/rss": "^4.0.15",
-    "@astrojs/sitemap": "^3.7.0",
-    "@astrojs/svelte": "^7.2.5",
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/mdx": "5.0.2",
+    "@astrojs/rss": "^4.0.17",
+    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/svelte": "^8.0.2",
+    "@astrojs/vercel": "^10.0.2",
     "@fontsource-variable/fraunces": "^5.2.9",
     "@fontsource/eb-garamond": "^5.2.7",
     "@fontsource/fraunces": "^5.2.9",
     "@fontsource/iosevka": "^5.2.5",
     "@fontsource/urbanist": "^5.2.7",
     "@myriaddreamin/rehype-typst": "0.7.0-rc2",
-    "@unocss/astro": "66.6.1",
-    "astro": "6.0.0-beta.15",
+    "@tiptap/core": "^3.20.0",
+    "@tiptap/extension-placeholder": "^3.20.0",
+    "@tiptap/pm": "^3.20.0",
+    "@tiptap/starter-kit": "^3.20.0",
+    "@unocss/astro": "66.6.7",
+    "astro": "6.0.6",
+    "better-auth": "^1.5.6",
     "bits-ui": "^2.16.2",
+    "gray-matter": "^4.0.3",
     "remark-math": "^6.0.0",
     "svelte": "^5.53.5",
-    "unocss": "66.6.1"
+    "tiptap-markdown": "^0.9.0",
+    "unocss": "66.6.7"
   },
   "devDependencies": {
     "@iconify-json/ph": "^1.2.2",
-    "@unocss/preset-wind4": "^66.6.1",
+    "@unocss/preset-wind4": "^66.6.2",
     "typescript": "^5.9.3"
   }
 }

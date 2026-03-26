@@ -1,9 +1,14 @@
 ---
-title: "Cristianismo y Cultura"
-description: "Conferencia sobre La Preparación Científica del Ministro por J. Gresham Machen (1912)."
-pubDate: "Feb 20 2026"
-category: "Teología"
-icon: "i-ph-books-duotone"
+title: Cristianismo and Cultura
+description: >-
+  Conferencia sobre La Preparación Científica del Ministro por J. Gresham Machen
+  (1912).
+pubDate: '2026-02-26'
+category: Teología
+icon: i-ph-books-duotone
+status: published
+draft: false
+updatedDate: '2026-02-28T01:10:16.406Z'
 ---
 
 ## J. Gresham Machen
