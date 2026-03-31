@@ -1,14 +1,15 @@
 ---
 /**
- * MachenQuoteBox: A stylized callout for academic quotes.
+ * EditorialQuote: A stylized callout for editorial quotes.
  * Uses a double-border and distinct typography for a "vintage book" feel.
  */
 interface Props {
   quote: string;
-  source?: string;
+  author?: string; // Renamed from source for clarity
+  source?: string; // Original source if different from author
   year?: string;
 }
-const { quote, source = "J. Gresham Machen", year = "1912" } = Astro.props;
+const { quote, author, source, year } = Astro.props;
 ---
 
 <div class="my-16 relative">
@@ -26,13 +27,16 @@ const { quote, source = "J. Gresham Machen", year = "1912" } = Astro.props;
           {quote}
         </p>
         
-        <div class="flex items-center gap-4 pt-4">
-          <div class="h-px flex-1 bg-border/60"></div>
-          <footer class="text-xs font-mono uppercase tracking-[0.2em] text-text-muted">
-            <span class="font-bold text-primary">{source}</span>
-            {year && <span class="mx-2">&middot;</span> <span class="opacity-60">{year}</span>}
-          </footer>
-        </div>
+        {(author || source || year) && (
+          <div class="flex items-center gap-4 pt-4">
+            <div class="h-px flex-1 bg-border/60"></div>
+            <footer class="text-xs font-mono uppercase tracking-[0.2em] text-text-muted">
+              {author && <span class="font-bold text-primary">{author}</span>}
+              {source && <span class="font-medium">{author ? ` (${source})` : source}</span>}
+              {year && <span class="mx-2">&middot;</span> <span class="opacity-60">{year}</span>}
+            </footer>
+          </div>
+        )}
       </div>
 
       <!-- Bottom quote mark -->

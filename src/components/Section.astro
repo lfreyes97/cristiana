@@ -1,0 +1,15 @@
+---
+interface Props {
+  wide?: boolean;
+}
+
+const { wide = false } = Astro.props;
+---
+
+<div
+  class={wide
+    ? "w-full"
+    : "prose prose-lg prose-slate dark:prose-invert font-serif leading-loose text-text mx-auto max-w-none md:max-w-3xl"}
+>
+  <slot />
+</div>

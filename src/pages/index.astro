@@ -16,7 +16,6 @@ import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import Header from "../components/Header.astro";
 import HeroMinimal from "../components/HeroMinimal.astro";
-import Disciplines from "../components/Disciplines.astro";
 import FeaturedPost from "../components/FeaturedPost.astro";
 import EditorialFeatures from "../components/EditorialFeatures.astro";
 import Manifesto from "../components/Manifesto.astro";
@@ -101,7 +100,7 @@ const morePosts = rest.slice(0, 3).map((post) => ({
 
   <main>
     <HeroMinimal />
-    <Disciplines />
+    <!-- <Disciplines /> -->
     <FeaturedPost {...latestPost} />
     <EditorialFeatures posts={morePosts} />
 

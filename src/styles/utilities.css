@@ -21,53 +21,96 @@
 }
 
 /* Aplicación global a cualquier elemento que use Fraunces */
-.font-display, 
+.font-display,
 [class*="font-display"],
 [style*="Fraunces"],
-.fraunces-variable {
-  font-family: 'Fraunces Variable', serif !important;
-  font-variation-settings: 
-    "WONK" var(--fr-wonk), 
-    "SOFT" var(--fr-soft), 
+.fraunces-variable,
+h1,
+h2,
+.h1,
+.h2 {
+  font-family: "Fraunces Variable", serif !important;
+  font-variation-settings:
+    "WONK" var(--fr-wonk),
+    "SOFT" var(--fr-soft),
     "opsz" var(--fr-opsz),
     "wght" var(--fr-wght);
 }
 
 /* Utilidades de escala óptica dinámica */
-.fraunces-display { --fr-opsz: 144; }
-.fraunces-heading { --fr-opsz: 72;  }
-.fraunces-body    { --fr-opsz: 24;  }
-.fraunces-caption { --fr-opsz: 12;  }
+.fraunces-display {
+  --fr-opsz: 144;
+}
+.fraunces-heading {
+  --fr-opsz: 72;
+}
+.fraunces-body {
+  --fr-opsz: 24;
+}
+.fraunces-caption {
+  --fr-opsz: 12;
+}
 
 /* Soporte para heredar el font-weight de UnoCSS/Tailwind */
-.font-100 { --fr-wght: 100; }
-.font-200 { --fr-wght: 200; }
-.font-300 { --fr-wght: 300; }
-.font-400 { --fr-wght: 400; }
-.font-500 { --fr-wght: 500; }
-.font-600 { --fr-wght: 600; }
-.font-700 { --fr-wght: 700; }
-.font-800 { --fr-wght: 800; }
-.font-900 { --fr-wght: 900; }
-.font-bold { --fr-wght: 700; }
-.font-black { --fr-wght: 900; }
+.font-100 {
+  --fr-wght: 100;
+}
+.font-200 {
+  --fr-wght: 200;
+}
+.font-300 {
+  --fr-wght: 300;
+}
+.font-400 {
+  --fr-wght: 400;
+}
+.font-500 {
+  --fr-wght: 500;
+}
+.font-600 {
+  --fr-wght: 600;
+}
+.font-700 {
+  --fr-wght: 700;
+}
+.font-800 {
+  --fr-wght: 800;
+}
+.font-900 {
+  --fr-wght: 900;
+}
+.font-bold {
+  --fr-wght: 700;
+}
+.font-black {
+  --fr-wght: 900;
+}
 
 /* ── Utilities ─────────────────────────────────────────────────── */
 
-
 /* Typst math SVGs */
-.typst-doc                { color: var(--color-text); max-width: 100%; height: auto; }
+.typst-doc {
+  color: var(--color-text);
+  max-width: 100%;
+  height: auto;
+}
 .typst-doc g,
-.typst-doc path           { fill: currentColor !important; }
+.typst-doc path {
+  fill: currentColor !important;
+}
 
 /* Glass surfaces */
 [data-style="glass"] .bg-surface,
 [data-style="glass"] .glass {
-  background-color: color-mix(in srgb, var(--color-surface), transparent 40%) !important;
+  background-color: color-mix(
+    in srgb,
+    var(--color-surface),
+    transparent 40%
+  ) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid color-mix(in srgb, var(--color-text), transparent 90%);
   box-shadow:
-    0 4px 30px rgba(0,0,0,.1),
-    inset 0 0 0 1px rgba(255,255,255,.1);
+    0 4px 30px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }

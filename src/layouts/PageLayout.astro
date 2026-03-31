@@ -1,0 +1,73 @@
+---
+import Layout from "./Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PageSidebar from "../components/PageSidebar.astro";
+
+interface Props {
+  frontmatter: {
+    title: string;
+    subtitle?: string;
+    category?: string;
+    sidebarTitle?: string;
+    sidebarContent?: string;
+    sidebarFooter?: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+const {
+  title,
+  subtitle,
+  category = "Página",
+  sidebarTitle,
+  sidebarContent,
+  sidebarFooter,
+} = frontmatter;
+---
+
+<Layout title={`${title.replace(/<br\s*\/?>/gi, " ")} - Cristianamente`}>
+  <Header />
+
+  <main class="py-24 min-h-screen">
+    <article class="max-w-7xl mx-auto px-6">
+      <!-- Header -->
+      <header class="text-center mb-24">
+        {
+          category && (
+            <span class="text-secondary font-bold tracking-widest uppercase text-xs mb-4 block">
+              {category}
+            </span>
+          )
+        }
+        <h1
+          class="text-6xl md:text-8xl font-display font-black text-primary mb-8 leading-[1.05] tracking-tighter"
+          set:html={title}
+        />
+        {
+          subtitle && (
+            <p class="max-w-2xl mx-auto text-xl text-text opacity-80 font-serif leading-relaxed">
+              {subtitle}
+            </p>
+          )
+        }
+        <div class="w-24 h-1 bg-secondary mx-auto mt-12"></div>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+        <!-- Sidebar -->
+        <PageSidebar
+          title={sidebarTitle}
+          content={sidebarContent}
+          footer={sidebarFooter}
+        />
+
+        <!-- Article Content -->
+        <div class="md:col-span-8 order-1 md:order-2">
+          <slot />
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
