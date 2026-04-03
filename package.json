@@ -8,11 +8,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "preview": "pnpm run build && wrangler dev",
+    "astro": "astro",
+    "deploy": "pnpm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
     "@astrojs/check": "0.9.7-beta.1",
+    "@astrojs/cloudflare": "12",
     "@astrojs/mdx": "5.0.0-beta.8",
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
@@ -33,6 +36,7 @@
   "devDependencies": {
     "@iconify-json/ph": "^1.2.2",
     "@unocss/preset-wind4": "^66.6.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.80.0"
   }
 }

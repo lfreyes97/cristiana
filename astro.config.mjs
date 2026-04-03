@@ -8,19 +8,24 @@ import remarkMath from "remark-math";
 
 import sitemap from "@astrojs/sitemap";
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://cristianamente.com",
   output: "static",
-
   integrations: [mdx(), UnoCSS(), svelte(), sitemap()],
+
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeTypst],
   },
+
   vite: {
     ssr: {
       noExternal: ["bits-ui", "@internationalized/date", /\.svelte$/],
     },
   },
+
+  adapter: cloudflare()
 });
