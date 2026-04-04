@@ -9,6 +9,8 @@
   let progress = 0;
   let tocOpen = false;
 
+  $: internalHeadings = headings.filter(h => h.depth > 1);
+
   const threshold = 200; // Show reading bar after this many pixels
 
   onMount(() => {
@@ -144,7 +146,7 @@
     <!-- Right Side: Interaction -->
     <div class="flex items-center gap-4 shrink-0">
       <!-- TOC Button -->
-      {#if headings.length > 0}
+      {#if internalHeadings.length > 0}
         <div class="relative">
           <button
             on:click={toggleToc}
@@ -164,14 +166,14 @@
               >
                 Contenido
               </div>
-              {#each headings as heading}
+              {#each internalHeadings as heading}
                 <a
                   href={`#${heading.slug}`}
                   on:click={() => (tocOpen = false)}
                   class="block text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] hover:translate-x-1 transition-all py-1.5 pl-2 border-l-2 border-transparent hover:border-[var(--color-secondary)]"
                   class:ml-4={heading.depth > 2}
                 >
-                  {heading.text}
+                  {@html heading.text}
                 </a>
               {/each}
             </div>
