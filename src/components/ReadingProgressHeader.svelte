@@ -42,18 +42,8 @@
   <div
     class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-4"
   >
-    <!-- Socials (Left) -->
-    <div class="hidden md:flex gap-4 text-[var(--color-text)] opacity-60">
-      <div
-        class="i-ph-instagram-logo text-xl hover:text-[var(--color-primary)] transition-colors cursor-pointer"
-      ></div>
-      <div
-        class="i-ph-twitter-logo text-xl hover:text-[var(--color-primary)] transition-colors cursor-pointer"
-      ></div>
-      <div
-        class="i-ph-pinterest-logo text-xl hover:text-[var(--color-primary)] transition-colors cursor-pointer"
-      ></div>
-    </div>
+    <!-- Left Column (Empty layout placeholder) -->
+    <div class="hidden md:block"></div>
 
     <!-- Centers Logo -->
     <div class="text-center">
@@ -67,12 +57,6 @@
 
     <!-- Tools (Right) -->
     <div class="flex justify-center md:justify-end items-center gap-4">
-      <div
-        class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[var(--color-text)] opacity-60"
-      >
-        <div class="i-ph-magnifying-glass text-lg"></div>
-        <span class="hidden lg:inline">Buscar</span>
-      </div>
       {#if !isReadingMode}
         <ThemeSwitcher />
       {:else}
