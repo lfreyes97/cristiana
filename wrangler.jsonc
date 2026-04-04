@@ -2,6 +2,12 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "cristiana",
   "compatibility_date": "2026-04-03",
+  "routes": [
+    {
+      "pattern": "cristianamente.xyz",
+      "custom_domain": true
+    }
+  ],
   "observability": {
     "enabled": true
   },

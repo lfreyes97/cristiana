@@ -12,7 +12,7 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://cristianamente.com",
+  site: "https://cristianamente.xyz",
   output: "static",
   integrations: [mdx(), UnoCSS(), svelte(), sitemap()],
 
