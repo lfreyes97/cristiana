@@ -8,62 +8,79 @@ sidebarContent: '"La Iglesia está pereciendo hoy por falta de pensamiento, no p
 sidebarFooter: "— J.G. Machen, 1912"
 ---
 
-import ThreePaths from "../components/ThreePaths.astro";
+import ThreePaths from "../ckomponents/ThreePaths.astro";
 import EditorialQuote from "../components/EditorialQuote.astro";
 import AuthorSignature from "../components/AuthorSignature.astro";
 import Section from "../components/Section.astro";
+import PageSidebar from "../components/PageSidebar.astro";
 
-<Section>
-  <p class="text-2xl leading-relaxed text-primary font-medium mb-8">
-    Este proyecto nace de una convicción clásica:{" "}
-    <strong class="text-secondary">
-      el deseo de conocer y el deseo de ser salvado no tienen por qué estar en
-      conflicto.
-    </strong>{" "}
-    Como planteó Machen en 1912, la Iglesia no puede permitirse el lujo de la
-    indolencia intelectual.
-  </p>
+<div class="max-w-7xl mx-auto px-6">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">
+    {/* Sidebar */}
+    <PageSidebar
+      title={frontmatter.sidebarTitle}
+      content={frontmatter.sidebarContent}
+      footer={frontmatter.sidebarFooter}
+    />
 
-  <p class="text-lg opacity-80">
-    A menudo nos enfrentamos a dos errores. Algunos buscan subordinar el
-    cristianismo a las modas académicas del día, vaciándolo de su poder
-      sobrenatural. Otros, por el contrario, buscan destruir la cultura en nombre de una fe que teme al intelecto.
-      </p>
+    {/* Article Content */}
+    <div class="md:col-span-8 order-1 md:order-2">
+      <Section>
+        <p class="text-2xl leading-relaxed text-primary font-medium mb-8">
+          Este proyecto nace de una convicción clásica:{" "}
+          <strong class="text-secondary">
+            el deseo de conocer y el deseo de ser salvado no tienen por qué estar en
+            conflicto.
+          </strong>{" "}
+          Como planteó Machen en 1912, la Iglesia no puede permitirse el lujo de la
+          indolencia intelectual.
+        </p>
 
-  <p class="text-lg opacity-80">
-    Nosotros elegimos el tercer camino: <strong>la consagración</strong>. No
-    buscamos retirarnos a un "monasticismo intelectual modernizado", sino salir
-    gozosos al mundo a someter cada disciplina —la ciencia, el arte, la filosofía—
-    a la soberanía de Dios.
-  </p>
-</Section>
+        <p class="text-lg opacity-80">
+          A menudo nos enfrentamos a dos errores. Algunos buscan subordinar el
+          cristianismo a las modas académicas del día, vaciándolo de su poder
+          sobrenatural. Otros, por el contrario, buscan destruir la cultura en nombre de una fe que teme al intelecto.
+        </p>
 
-<EditorialQuote
-  author="J. Gresham Machen"
-  year="1923"
-  source="Cristianismo y Liberalismo"
-  quote="El cristiano no puede estar satisfecho mientras cualquier actividad humana esté en oposición al cristianismo o fuera de toda conexión con él."
-/>
+        <p class="text-lg opacity-80">
+          Nosotros elegimos el tercer camino: <strong>la consagración</strong>. No
+          buscamos retirarnos a un "monasticismo intelectual modernizado", sino salir
+          gozosos al mundo a someter cada disciplina —la ciencia, el arte, la filosofía—
+          a la soberanía de Dios.
+        </p>
+      </Section>
 
-<Section>
-  <p class="text-lg opacity-80">
-    Aquí escribimos sobre diversas disciplinas no como compartimentos estancos,
-    sino como facetas de una misma realidad creada. Creemos que la Iglesia está
-    pereciendo hoy por falta de pensamiento, y buscamos, en nuestra pequeña
-    medida, llenar ese vacío con convicciones maduras.
-  </p>
+      <EditorialQuote
+        author="J. Gresham Machen"
+        year="1923"
+        source="Cristianismo y Cultura"
+        quote="El cristiano no puede estar satisfecho mientras cualquier actividad humana esté en oposición al cristianismo o fuera de toda conexión con él."
+      />
 
-  <p class="text-lg opacity-80">
-    No adaptamos nuestro mensaje a las modas del día. Buscamos respuestas eternas
-    en la clara luz del Evangelio, con la esperanza de que a una era de duda le
-    siga el amanecer de una era de fe.
-  </p>
-</Section>
+      <Section>
+        <p class="text-lg opacity-80">
+          Aquí escribimos sobre diversas disciplinas no como compartimentos estancos,
+          sino como facetas de una misma realidad creada. Creemos que la Iglesia está
+          pereciendo hoy por falta de pensamiento, y buscamos, en nuestra pequeña
+          medida, llenar ese vacío con convicciones maduras.
+        </p>
 
-<div class="mb-24">
+        <p class="text-lg opacity-80">
+          No adaptamos nuestro mensaje a las modas del día. Buscamos respuestas eternas
+          en la clara luz del Evangelio, con la esperanza de que a una era de duda le
+          siga el amanecer de una era de fe.
+        </p>
+      </Section>
+    </div>
+  </div>
+</div>
+
+<div class="mb-24 w-full">
   <ThreePaths />
 </div>
 
-<Section>
-  <AuthorSignature />
-</Section>
+<div class="max-w-7xl mx-auto px-6">
+  <Section>
+    <AuthorSignature />
+  </Section>
+</div>
