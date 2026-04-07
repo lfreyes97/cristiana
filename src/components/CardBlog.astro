@@ -28,7 +28,7 @@ import Pill from "./Pill.astro";
 
 {
 	variant === "list" ? (
-		<article class="group relative grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center bg-surface border-[length:var(--border-width)] border-border-subtle p-2 rounded-[var(--radius-2xl)] hover:shadow-[var(--shadow-lg)] transition-all duration-300">
+		<article class="group relative grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center bg-surface border-[length:var(--border-width)] border-border-subtle p-3 md:p-2 rounded-[var(--radius-2xl)] hover:shadow-[var(--shadow-lg)] transition-all duration-300">
 			<!-- Image Column -->
 			<div class="md:col-span-4 h-full min-h-[240px] relative overflow-hidden rounded-[var(--radius-xl)] bg-bg-offset">
 				{image ? (
@@ -45,7 +45,7 @@ import Pill from "./Pill.astro";
 			</div>
 			
 			<!-- Content Column -->
-			<div class="md:col-span-8 pr-4 py-4 flex flex-col items-start gap-4">
+			<div class="md:col-span-8 px-4 md:pr-4 py-4 flex flex-col items-start gap-4">
                 <div class="flex items-center gap-3 mb-2">
 					<Pill icon={icon} variant="soft">{category}</Pill>
                     <span class="w-1 h-1 rounded-full bg-text-muted/30"></span>

@@ -9,7 +9,7 @@
   let progress = 0;
   let tocOpen = false;
 
-  $: internalHeadings = headings.filter(h => h.depth > 1);
+  $: internalHeadings = headings.filter((h) => h.depth > 1);
 
   const threshold = 200; // Show reading bar after this many pixels
 
@@ -70,7 +70,7 @@
   <nav
     class="
         mx-auto w-full md:w-auto overflow-x-auto
-        px-5 py-3 md:px-8 md:py-4
+        px-4 py-3 md:px-8 md:py-4
         bg-[var(--color-surface)]
         border-[length:var(--border-width)] border-[var(--color-border)]
         rounded-[var(--radius-pill)]
@@ -80,25 +80,31 @@
   >
     <a
       href="/"
-      class="text-sm font-black uppercase tracking-widest text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors whitespace-nowrap"
+      class="hidden md:block text-[10px] md:text-sm font-black uppercase tracking-widest text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors whitespace-nowrap"
       >Home</a
     >
-    <div class="w-1.5 h-1.5 bg-[var(--color-border)] rotate-45"></div>
+    <div
+      class="hidden md:block w-1.5 h-1.5 bg-[var(--color-border)] rotate-45"
+    ></div>
     <a
       href="/blog"
-      class="text-sm font-black uppercase tracking-widest text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors whitespace-nowrap"
+      class="text-[10px] md:text-sm font-black uppercase tracking-widest text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors whitespace-nowrap"
       >Ensayos</a
     >
-    <div class="w-1.5 h-1.5 bg-[var(--color-border)] rotate-45"></div>
+    <div
+      class="w-1 h-1 md:w-1.5 md:h-1.5 bg-[var(--color-border)] rotate-45"
+    ></div>
     <a
       href="/blog"
-      class="text-sm font-black uppercase tracking-widest text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors whitespace-nowrap"
+      class="text-[10px] md:text-sm font-black uppercase tracking-widest text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors whitespace-nowrap"
       >Notas</a
     >
-    <div class="w-1.5 h-1.5 bg-[var(--color-border)] rotate-45"></div>
+    <div
+      class="w-1 h-1 md:w-1.5 md:h-1.5 bg-[var(--color-border)] rotate-45"
+    ></div>
     <a
       href="/about"
-      class="text-sm font-black uppercase tracking-widest text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors whitespace-nowrap"
+      class="text-[10px] md:text-sm font-black uppercase tracking-widest text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors whitespace-nowrap"
       >Acerca</a
     >
   </nav>
