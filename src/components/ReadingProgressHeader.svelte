@@ -49,7 +49,7 @@
     <div class="text-center">
       <a
         href="/"
-        class="text-4xl md:text-5xl font-serif font-black tracking-tighter text-[var(--color-primary)]"
+        class="text-3xl md:text-5xl font-serif font-black tracking-tighter text-[var(--color-primary)]"
       >
         Cristianamente.
       </a>
@@ -70,12 +70,12 @@
   <nav
     class="
         mx-auto w-full md:w-auto overflow-x-auto
-        px-8 py-4
+        px-5 py-3 md:px-8 md:py-4
         bg-[var(--color-surface)]
         border-[length:var(--border-width)] border-[var(--color-border)]
         rounded-[var(--radius-pill)]
         shadow-[var(--shadow-md)]
-        flex items-center gap-8 justify-center
+        flex items-center gap-4 md:gap-8 justify-center
     "
   >
     <a

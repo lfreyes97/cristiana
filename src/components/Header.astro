@@ -10,14 +10,14 @@ const currentPath = Astro.url.pathname;
     <!-- Logo -->
     <a
       href="/"
-      class="text-5xl md:text-7xl font-display font-black tracking-tighter text-primary"
+      class="text-4xl md:text-7xl font-display font-black tracking-tighter text-primary"
     >
       Cristianamente.
     </a>
 
     <!-- Pill Nav -->
     <nav
-      class="w-auto overflow-x-auto px-8 py-3 bg-surface border-[length:var(--border-width)] border-border rounded-[var(--radius-pill)] shadow-[var(--shadow-md)] flex items-center gap-6 justify-center"
+      class="w-auto overflow-x-auto px-5 py-2.5 md:px-8 md:py-3 bg-surface border-[length:var(--border-width)] border-border rounded-[var(--radius-pill)] shadow-[var(--shadow-md)] flex items-center gap-4 md:gap-6 justify-center"
     >
       <a
         href="/"
@@ -71,37 +71,29 @@ const currentPath = Astro.url.pathname;
       Cristianamente.
     </a>
 
-    <nav class="hidden md:flex items-center gap-6">
+    <nav class="flex items-center gap-4 md:gap-6">
+      <!-- Hidden on very small screens, shown as text on tablet/desktop -->
       <a
         href="/blog"
         class:list={[
-          "text-xs font-bold uppercase tracking-wider transition-colors",
+          "text-[10px] md:text-xs font-bold uppercase tracking-wider transition-colors",
           currentPath.startsWith("/blog")
             ? "text-primary"
             : "text-text-muted hover:text-primary",
         ]}>Ensayos</a
       >
       <a
-        href="#"
-        class="text-xs font-bold uppercase tracking-wider text-text-muted hover:text-primary transition-colors"
-        >Notas</a
-      >
-      <a
         href="/about"
         class:list={[
-          "text-xs font-bold uppercase tracking-wider transition-colors",
+          "text-[10px] md:text-xs font-bold uppercase tracking-wider transition-colors",
           currentPath === "/about"
             ? "text-primary"
             : "text-text-muted hover:text-primary",
         ]}>Acerca</a
       >
-      <div class="w-px h-5 bg-border-subtle"></div>
+      <div class="w-px h-4 md:h-5 bg-border-subtle"></div>
       <ThemeSwitcher client:only="svelte" />
     </nav>
-
-    <div class="flex items-center gap-3 md:hidden">
-      <ThemeSwitcher client:only="svelte" />
-    </div>
   </div>
 </div>
 
