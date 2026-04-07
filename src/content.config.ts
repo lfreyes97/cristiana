@@ -30,4 +30,14 @@ const citas = defineCollection({
   }),
 });
 
-export const collections = { blog, citas };
+const notas = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/notas" }),
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.coerce.date(),
+    description: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+  }),
+});
+
+export const collections = { blog, citas, notas };

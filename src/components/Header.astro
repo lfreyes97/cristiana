@@ -40,9 +40,13 @@ const currentPath = Astro.url.pathname;
       >
       <div class="w-1 h-1 md:w-1.5 md:h-1.5 bg-border rotate-45"></div>
       <a
-        href="#"
-        class="text-[10px] md:text-xs font-black uppercase tracking-widest text-text-muted hover:text-primary transition-colors whitespace-nowrap"
-        >Notas</a
+        href="/notes"
+        class:list={[
+          "text-[10px] md:text-xs font-black uppercase tracking-widest transition-colors whitespace-nowrap",
+          currentPath.startsWith("/notes")
+            ? "text-primary"
+            : "text-text-muted hover:text-primary",
+        ]}>Notas</a
       >
       <div class="w-1 h-1 md:w-1.5 md:h-1.5 bg-border rotate-45"></div>
       <a

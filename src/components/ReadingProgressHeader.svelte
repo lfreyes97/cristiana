@@ -95,7 +95,7 @@
       class="w-1 h-1 md:w-1.5 md:h-1.5 bg-[var(--color-border)] rotate-45"
     ></div>
     <a
-      href="/blog"
+      href="/notes"
       class="text-[10px] md:text-sm font-black uppercase tracking-widest text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors whitespace-nowrap"
       >Notas</a
     >
