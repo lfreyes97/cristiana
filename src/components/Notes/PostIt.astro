@@ -1,0 +1,58 @@
+---
+interface Props {
+  color?: string;
+  rotate?: number;
+}
+
+const { color = "#ffeb3b", rotate = -2 } = Astro.props;
+---
+
+<div class="post-it" style={`--post-color: ${color}; --post-rotate: ${rotate}deg;`}>
+  <slot />
+</div>
+
+<style>
+  .post-it {
+    padding: 1.5rem;
+    background-color: var(--post-color);
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.1);
+    transform: rotate(var(--post-rotate));
+    margin: 2rem auto;
+    max-width: 300px;
+    font-family: "Kalam", cursive;
+    font-size: 1.1rem;
+    color: #333;
+    position: relative;
+    border-radius: 2px;
+    filter: url(#filter-sketch);
+    transition: transform 0.2s ease;
+  }
+
+  .post-it:hover {
+    transform: rotate(0deg) scale(1.02);
+    box-shadow: 4px 8px 16px rgba(0,0,0,0.15);
+  }
+
+  .post-it::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 20%;
+    right: 20%;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    z-index: 1;
+    border-radius: 2px;
+  }
+
+  /* Different shades for variety if not specified */
+  :root {
+    --post-color: #fff9c4;
+  }
+  
+  :global(.dark) .post-it {
+    background-color: color-mix(in srgb, var(--post-color), #000 20%);
+    color: #111; /* Keep it dark for contrast on yellow */
+  }
+</style>

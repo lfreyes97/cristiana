@@ -1,0 +1,71 @@
+---
+interface Props {
+  author?: string;
+}
+
+const { author } = Astro.props;
+---
+
+<blockquote class="handwritten-quote">
+  <div class="quote-content">
+    <slot />
+  </div>
+  {author && <cite class="quote-author">— {author}</cite>}
+</blockquote>
+
+<style>
+  .handwritten-quote {
+    margin: 3rem 0;
+    padding: 2rem;
+    position: relative;
+    border: none;
+    font-family: "Kalam", cursive;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--color-primary);
+    filter: url(#filter-sketch);
+  }
+
+  .handwritten-quote::before,
+  .handwritten-quote::after {
+    content: '"';
+    position: absolute;
+    font-size: 5rem;
+    opacity: 0.15;
+    font-family: serif;
+    line-height: 1;
+  }
+
+  .handwritten-quote::before {
+    top: -1rem;
+    left: 0;
+  }
+
+  .handwritten-quote::after {
+    bottom: -3rem;
+    right: 0;
+  }
+
+  .quote-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-author {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    opacity: 0.8;
+    font-style: normal;
+  }
+
+  /* Variations for non-centered quotes */
+  :global(.prose) .handwritten-quote p {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+  }
+</style>

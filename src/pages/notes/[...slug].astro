@@ -1,6 +1,12 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
-import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import NoteLayout from "../../layouts/NoteLayout.astro";
+import Mark from "../../components/Notes/Mark.astro";
+import Sidenote from "../../components/Notes/Sidenote.astro";
+import PostIt from "../../components/Notes/PostIt.astro";
+import HandwrittenQuote from "../../components/Notes/HandwrittenQuote.astro";
+import Presentation from "../../components/Notes/BrainstormCanvas.svelte";
+import Frame from "../../components/Notes/BrainstormFrame.astro";
 
 export async function getStaticPaths() {
   const notes = await getCollection("notas");
@@ -19,14 +25,23 @@ const date = note.data.pubDate.toLocaleDateString("es-ES", {
   month: "long",
   day: "numeric",
 });
+
+const components = {
+  Mark,
+  Sidenote,
+  PostIt,
+  HandwrittenQuote,
+  Presentation,
+  Frame,
+};
 ---
 
-<ArticleLayout
+<NoteLayout
   title={note.data.title}
   category="Nota"
   date={date}
   description={note.data.description || ""}
   headings={headings}
 >
-  <Content />
-</ArticleLayout>
+  <Content components={components} />
+</NoteLayout>

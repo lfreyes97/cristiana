@@ -1,0 +1,64 @@
+---
+interface Props {
+  x?: number;
+  y?: number;
+  scale?: number;
+  rotate?: number;
+  id?: string;
+}
+
+const { x = 0, y = 0, scale = 1, rotate = 0, id = Math.random().toString(36).substr(2, 9) } = Astro.props;
+---
+
+<div 
+  class="canvas-frame" 
+  data-frame 
+  data-x={x} 
+  data-y={y} 
+  data-scale={scale} 
+  data-rotate={rotate}
+  data-id={id}
+  style={`transform: translate(${x}px, ${y}px) scale(${scale}) rotate(${rotate}deg);`}
+>
+  <div class="frame-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .canvas-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    min-width: 300px;
+    transform-origin: center center;
+    pointer-events: auto;
+  }
+
+  .frame-content {
+    background: var(--color-bg);
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-md);
+    filter: url(#filter-sketch);
+    position: relative;
+  }
+
+  .frame-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 23px,
+      rgba(var(--color-primary-rgb), 0.05) 23px,
+      rgba(var(--color-primary-rgb), 0.05) 24px
+    );
+    background-size: 100% 24px;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+title: "El Mapa Mental de la Creatividad"
+pubDate: 2026-04-08
+description: "Una exploración interactiva sobre el proceso creativo y la polimatía."
+category: "Nota"
+tags: ["creatividad", "proceso", "interactivo"]
+---
+import Presentation from "../../components/Notes/BrainstormCanvas.svelte";
+import Frame from "../../components/Notes/BrainstormFrame.astro";
+
+Aquí presento una visión espacial de cómo las ideas se conectan. Navega por el lienzo usando las flechas o las teclas de dirección.
+
+<Presentation client:load>
+  <Frame x={0} y={0} scale={1} rotate={0}>
+    # El Núcleo
+    Toda gran idea comienza con una curiosidad insaciable. 
+    
+    <Mark>La polimatía</Mark> no es solo saber de todo, es conectar lo que parece inconexo.
+  </Frame>
+
+  <Frame x={600} y={-300} scale={1.5} rotate={5}>
+    ## Teología y Arte
+    ¿Cómo influye la visión de la trascendencia en la estética? 
+    
+    <Sidenote type="idea">El arte es una sub-creación humana que refleja la Gran Creación.</Sidenote>
+  </Frame>
+
+  <Frame x={600} y={400} scale={1.2} rotate={-10}>
+    ## Ciencia y Tecnología
+    La herramienta no es neutral. Moldea nuestra forma de percibir la realidad.
+    
+    <PostIt color="#b3e5fc">
+      La técnica debe estar al servicio del propósito humano, no al revés.
+    </PostIt>
+  </Frame>
+
+  <Frame x={-500} y={200} scale={0.8} rotate={15}>
+    ## Conclusión
+    El mapa no es el territorio, pero nos ayuda a no perdernos en el caos.
+    
+    <HandwrittenQuote author="L. F. Reyes">
+      Nuestra mente es un lienzo infinito que busca la Verdad.
+    </HandwrittenQuote>
+  </Frame>
+</Presentation>
+
+La navegación espacial nos permite entender la jerarquía y la relación entre conceptos de una manera que un texto lineal simplemente no puede capturar.

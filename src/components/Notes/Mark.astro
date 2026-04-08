@@ -1,0 +1,43 @@
+---
+interface Props {
+  color?: string;
+}
+
+const { color = "rgba(255, 225, 0, 0.4)" } = Astro.props;
+---
+
+<mark class="marker-highlight" style={`--marker-color: ${color}`}>
+  <slot />
+</mark>
+
+<style>
+  .marker-highlight {
+    background: none;
+    position: relative;
+    padding: 0 0.2em;
+    margin: 0 -0.2em;
+    white-space: nowrap;
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+  }
+
+  .marker-highlight::before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: -2px;
+    right: -2px;
+    bottom: 5%;
+    background-color: var(--marker-color);
+    z-index: -1;
+    transform: rotate(-1deg) skewX(-2deg);
+    border-radius: 2px;
+    filter: url(#filter-marker);
+  }
+
+  /* Different variations for consecutive marks to avoid too much symmetry */
+  .marker-highlight:nth-child(even)::before {
+    transform: rotate(1.2deg) skewX(1deg);
+  }
+</style>
