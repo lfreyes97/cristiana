@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Colaborar — Cristianamente">
+  <Header />
+
+  <main class="min-h-screen pt-40 pb-32">
+    <div class="max-w-5xl mx-auto px-6">
+      <p class="text-secondary font-mono text-xs tracking-[0.3em] uppercase mb-4">
+        Proyecto Open Source
+      </p>
+
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-black leading-[0.95] tracking-tighter text-primary mb-8">
+        Colabora con<br />
+        <span class="italic font-serif text-secondary">Nosotros.</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-text-muted font-serif leading-relaxed max-w-2xl mb-16">
+        Cristianamente es más que un blog: es un esfuerzo colaborativo construido en abierto. Buscamos tanto la reflexión profunda sobre nuestra fe y la cultura, como la excelencia técnica. Hay dos maneras principales de involucrarte.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Contenido Card -->
+        <div class="group p-8 md:p-10 border border-border-subtle hover:border-primary transition-colors bg-surface rounded-[var(--radius-3xl)] flex flex-col items-start gap-6 relative overflow-hidden shadow-sm hover:shadow-md">
+          <div class="absolute -top-12 -right-12 text-[120px] text-border-subtle opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">
+            <div class="i-ph-pen-nib-duotone hidden md:block"></div>
+          </div>
+          
+          <div class="w-14 h-14 border border-border-subtle rounded-full bg-bg/50 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-bg transition-colors">
+            <div class="i-ph-pencil-simple-duotone"></div>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-serif text-primary mb-3">Creación de Contenido</h2>
+            <p class="text-text-muted text-sm md:text-base leading-relaxed mb-6">
+              Si te apasiona escribir, investigar o traducir, tu voz tiene un espacio aquí. Buscamos perspectivas sólidas que unan el intelecto y la fe.
+            </p>
+            <ul class="text-text-muted text-sm space-y-3 mb-6">
+              <li class="flex items-start gap-3">
+                <div class="i-ph-check-circle-duotone text-secondary mt-0.5 min-w-4 text-base"></div>
+                <span><strong>Ensayos y artículos:</strong> Reflexiones sobre teología, filosofía, tecnología y cultura.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="i-ph-check-circle-duotone text-secondary mt-0.5 min-w-4 text-base"></div>
+                <span><strong>Reseñas:</strong> Análisis de libros, películas o corrientes culturales.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="i-ph-check-circle-duotone text-secondary mt-0.5 min-w-4 text-base"></div>
+                <span><strong>Traducciones:</strong> Adaptación de textos relevantes y de dominio público.</span>
+              </li>
+            </ul>
+
+            <div class="mb-8 p-5 rounded-2xl bg-bg/50 border border-border-subtle text-sm text-text-muted leading-relaxed">
+              <strong class="text-text block mb-2 flex items-center gap-2">
+                <div class="i-ph-info-duotone text-secondary"></div> 
+                Línea Editorial
+              </strong>
+              Este espacio tiene un fundamento evangélico-reformado. Aunque la participación no es dogmáticamente restrictiva (por ejemplo, celebramos los aportes de hermanos de otras denominaciones o feudos, incluyendo católicos), no es un foro abierto a cualquier ideología ni un lugar para el proselitismo. Buscamos un diálogo riguroso, asombro filosófico y devoción genuina hacia una cosmovisión cristiana sólida.
+            </div>
+          </div>
+
+          <a href="mailto:cristianamenteweb@gmail.com" class="btn mt-auto z-10 w-full text-center py-3">Proponer una publicación</a>
+        </div>
+
+        <!-- Desarrollo Card -->
+        <div class="group p-8 md:p-10 border border-border-subtle hover:border-primary transition-colors bg-surface rounded-[var(--radius-3xl)] flex flex-col items-start gap-6 relative overflow-hidden shadow-sm hover:shadow-md">
+          <div class="absolute -top-12 -right-12 text-[120px] text-border-subtle opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">
+            <div class="i-ph-code-duotone hidden md:block"></div>
+          </div>
+
+          <div class="w-14 h-14 border border-border-subtle rounded-full bg-bg/50 flex items-center justify-center text-primary text-2xl group-hover:bg-primary group-hover:text-bg transition-colors">
+            <div class="i-ph-terminal-window-duotone"></div>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-serif text-primary mb-3">Desarrollo Open Source</h2>
+            <p class="text-text-muted text-sm md:text-base leading-relaxed mb-6">
+              El sitio web completo está disponible en GitHub (Astro, Svelte, UnoCSS). Si te gusta el desarrollo web, puedes ayudarnos a construir una mejor experiencia.
+            </p>
+            <ul class="text-text-muted text-sm space-y-3 mb-8">
+              <li class="flex items-start gap-3">
+                <div class="i-ph-check-circle-duotone text-secondary mt-0.5 min-w-4 text-base"></div>
+                <span><strong>Diseño y UI/UX:</strong> Refinamiento de la interfaz, accesibilidad y diseño interactivo.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="i-ph-check-circle-duotone text-secondary mt-0.5 min-w-4 text-base"></div>
+                <span><strong>Funcionalidades:</strong> Creación de nuevos componentes MDX, optimización y herramientas.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="i-ph-check-circle-duotone text-secondary mt-0.5 min-w-4 text-base"></div>
+                <span><strong>Mantenimiento:</strong> Revisión de código, actualización de dependencias y refactorización.</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://github.com/lfreyes97/cristiana" target="_blank" rel="noopener noreferrer" class="btn-outline mt-auto z-10 w-full text-center py-3 flex items-center justify-center gap-2">
+            <div class="i-ph-github-logo-duotone text-lg"></div>
+            Repositorio en GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

@@ -30,14 +30,24 @@ const {
 
       <article class="relative">
         <header class="mb-12 text-left">
-          <div class="flex items-center gap-4 mb-4">
-            <span class="handwritten text-secondary text-sm font-bold uppercase tracking-widest">
-              {category}
-            </span>
-            <span class="w-1 h-1 bg-border rounded-full"></span>
-            <span class="handwritten text-xs text-text opacity-60">
-              {date}
-            </span>
+          <div class="flex items-center justify-between mb-4 print:hidden">
+            <div class="flex items-center gap-4">
+              <span class="handwritten text-secondary text-sm font-bold uppercase tracking-widest">
+                {category}
+              </span>
+              <span class="w-1 h-1 bg-border rounded-full"></span>
+              <span class="handwritten text-xs text-text opacity-60">
+                {date}
+              </span>
+            </div>
+
+            <button 
+              onclick="window.print()" 
+              class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-tighter text-text-muted hover:text-primary transition-all px-3 py-1 border border-border-subtle rounded-full hover:bg-bg-offset"
+            >
+              <div class="i-ph-printer"></div>
+              <span>Imprimir / PDF</span>
+            </button>
           </div>
 
           <h1 class="handwritten-title text-4xl md:text-6xl font-black text-primary mb-6 leading-tight tracking-tight">
@@ -111,9 +121,82 @@ const {
   }
 
   /* Right margin space for sidenotes on desktop */
-  @media (min-width: 1200px) {
-    .note-container article {
-      padding-right: 50px; /* Space to move the body left slightly */
+    @media (min-width: 1200px) {
+      .note-container article {
+        padding-right: 50px; /* Space to move the body left slightly */
+      }
     }
-  }
-</style>
+
+    /* ── Uniform Output (Print Styles) ─────────────────────────── */
+    @media print {
+      @page {
+        margin: 2.5cm;
+        size: A4;
+      }
+
+      :root {
+        --color-bg: white !important;
+        --color-text: black !important;
+        --color-primary: black !important;
+      }
+
+      body, .note-container {
+        background: white !important;
+        background-image: none !important;
+        padding: 0 !important;
+        color: black !important;
+      }
+
+      nav, footer, .print-button, .print\:hidden, [class*="i-ph-arrow"] {
+        display: none !important;
+      }
+
+      .note-container {
+        min-height: auto !important;
+      }
+
+      .max-w-4xl {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      /* Typst/Editorial Aesthetic */
+      .handwritten-title {
+        font-family: "EB Garamond", serif !important;
+        text-align: center;
+        font-size: 2.5rem !important;
+        filter: none !important;
+        margin-top: 1cm;
+      }
+
+      .handwritten {
+        font-family: "EB Garamond", serif !important;
+        text-transform: none !important;
+        letter-spacing: normal !important;
+      }
+
+      .note-prose {
+        max-width: 100% !important;
+        text-align: justify;
+        hyphens: auto;
+        font-size: 11pt;
+        line-height: 1.5;
+        color: black !important;
+      }
+
+      .note-prose p {
+        margin-bottom: 1.2em;
+      }
+
+      /* Ensure Typst SVGs are crisp in print */
+      .typst-doc {
+        filter: grayscale(1) contrast(1.2);
+        color: black !important;
+      }
+      
+      .typst-doc path {
+        fill: black !important;
+      }
+    }
+  </style>

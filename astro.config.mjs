@@ -5,6 +5,7 @@ import mdx from "@astrojs/mdx";
 
 import rehypeTypst from "@myriaddreamin/rehype-typst";
 import remarkMath from "remark-math";
+import { rehypeCleanTypstNamespace } from "./src/plugins/cleanTypstNamespace.js";
 
 import sitemap from "@astrojs/sitemap";
 
@@ -18,7 +19,7 @@ export default defineConfig({
 
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeTypst],
+    rehypePlugins: [rehypeTypst, rehypeCleanTypstNamespace],
   },
 
   vite: {

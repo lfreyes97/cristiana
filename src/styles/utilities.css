@@ -17,7 +17,8 @@
   --fr-wonk: 0;
   --fr-soft: 0;
   --fr-opsz: 72;
-  --fr-wght: 400; /* Se hereda del font-weight si el navegador lo soporta, o se setea aquí */
+  --fr-wght: 400;
+  /* Se hereda del font-weight si el navegador lo soporta, o se setea aquí */
 }
 
 /* Aplicación global a cualquier elemento que use Fraunces */
@@ -41,12 +42,15 @@ h2,
 .fraunces-display {
   --fr-opsz: 144;
 }
+
 .fraunces-heading {
   --fr-opsz: 72;
 }
+
 .fraunces-body {
   --fr-opsz: 24;
 }
+
 .fraunces-caption {
   --fr-opsz: 12;
 }
@@ -55,45 +59,79 @@ h2,
 .font-100 {
   --fr-wght: 100;
 }
+
 .font-200 {
   --fr-wght: 200;
 }
+
 .font-300 {
   --fr-wght: 300;
 }
+
 .font-400 {
   --fr-wght: 400;
 }
+
 .font-500 {
   --fr-wght: 500;
 }
+
 .font-600 {
   --fr-wght: 600;
 }
+
 .font-700 {
   --fr-wght: 700;
 }
+
 .font-800 {
   --fr-wght: 800;
 }
+
 .font-900 {
   --fr-wght: 900;
 }
+
 .font-bold {
   --fr-wght: 700;
 }
+
 .font-black {
   --fr-wght: 900;
 }
 
 /* ── Utilities ─────────────────────────────────────────────────── */
 
-/* Typst math SVGs */
-.typst-doc {
+/* Typst math SVGs - Forzamos valores para ganar a los estilos inline del plugin */
+/* .typst-doc {
+  display: inline-block !important;
+  vertical-align: -0.12em !important; 
   color: var(--color-text);
   max-width: 100%;
-  height: auto;
+  height: 0.85em !important; 
+  width: auto !important;
+  margin: 0 0.1em;
+  transition: transform 0.2s ease;
+} */
+
+.typst-doc {
+  display: inline-block;
+  color: var(--color-text);
+  max-width: 100%;
+
 }
+
+/* Ajuste específico para cuando están en un contenedor de bloque o div individual */
+/* .typst-doc.display, 
+div.math-display .typst-doc,
+p > .typst-doc:only-child {
+  display: block !important;
+  margin-block: 1lh !important;
+  margin-inline: auto !important;
+  height: 1.5lh !important;
+  max-height: none !important;
+} */
+
 .typst-doc g,
 .typst-doc path {
   fill: currentColor !important;
@@ -102,11 +140,9 @@ h2,
 /* Glass surfaces */
 [data-style="glass"] .bg-surface,
 [data-style="glass"] .glass {
-  background-color: color-mix(
-    in srgb,
-    var(--color-surface),
-    transparent 40%
-  ) !important;
+  background-color: color-mix(in srgb,
+      var(--color-surface),
+      transparent 40%) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid color-mix(in srgb, var(--color-text), transparent 90%);

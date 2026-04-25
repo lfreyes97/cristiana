@@ -2,120 +2,169 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="mt-auto border-t border-border">
-  <!-- Main footer content -->
-  <div class="max-w-6xl mx-auto px-6 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-      <!-- Brand -->
-      <div class="md:col-span-5">
+<footer
+  class="mt-32 w-full bg-surface border-t border-border overflow-hidden relative"
+>
+  <!-- Interactive / Decorative background glow -->
+  <div
+    class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none -translate-y-1/2 z-0"
+  >
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10 pt-24 pb-12">
+    <!-- CTA prominent: Perfect place since we removed it from Header -->
+    <div
+      class="bg-bg border border-border p-8 md:p-12 rounded-[var(--radius-3xl)] mb-28 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm group hover:border-primary/50 transition-colors duration-500"
+    >
+      <div class="max-w-xl">
+        <h3
+          class="text-3xl md:text-4xl font-display font-black tracking-tight text-primary mb-4"
+        >
+          Ayúdanos a construir.
+        </h3>
+        <p class="text-text-muted font-serif text-lg leading-relaxed">
+          Este espacio prospera gracias a mentes inquietas. Únete a nosotros
+          como escritor, investigador o aportando código y diseño (Open Source).
+        </p>
+      </div>
+      <a
+        href="/colaborar"
+        class="btn shrink-0 text-lg px-8 py-4 flex items-center gap-3"
+      >
+        Súmate como colaborador
+        <div
+          class="i-ph-arrow-right-bold group-hover:translate-x-1 transition-transform"
+        >
+        </div>
+      </a>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-24">
+      <!-- Brand Statement -->
+      <div class="col-span-1 md:col-span-5">
         <a
           href="/"
-          class="text-3xl font-display font-black tracking-tighter text-primary"
+          class="text-3xl font-display font-black tracking-tighter text-primary inline-block mb-6 hover:opacity-80 transition-opacity"
         >
           Cristianamente.
         </a>
-        <p class="mt-4 text-text-muted text-sm leading-relaxed max-w-xs">
-          Fe, razón y belleza. Cada disciplina es una ventana al mismo paisaje.
+        <p
+          class="text-text-muted font-serif italic text-lg leading-relaxed max-w-sm mb-8"
+        >
+          Explorando las intersecciones entre la fe, el asombro filosófico y la
+          belleza artística, buscando una cosmovisión holística.
         </p>
-      </div>
 
-      <!-- Nav -->
-      <nav class="md:col-span-3">
-        <h4
-          class="text-xs font-bold uppercase tracking-widest text-text-muted mb-5"
-        >
-          Explorar
-        </h4>
-        <ul class="space-y-3">
-          <li>
-            <a
-              href="/blog"
-              class="text-sm text-text hover:text-secondary transition-colors"
-            >
-              Ensayos
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="text-sm text-text hover:text-secondary transition-colors"
-            >
-              Notas
-            </a>
-          </li>
-          <li>
-            <a
-              href="/about"
-              class="text-sm text-text hover:text-secondary transition-colors"
-            >
-              Sobre el proyecto
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- Connect -->
-      <div class="md:col-span-4">
-        <h4
-          class="text-xs font-bold uppercase tracking-widest text-text-muted mb-5"
-        >
-          Conectar
-        </h4>
-        <div class="flex gap-5">
+        <!-- Socials -->
+        <div class="flex gap-4">
           <a
-            href="#"
-            class="text-text-muted hover:text-secondary transition-colors"
-            aria-label="Twitter"
+            href="https://github.com/lfreyes97/cristiana"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            class="w-12 h-12 rounded-full border border-border-subtle flex items-center justify-center text-text-muted hover:text-primary hover:border-primary hover:bg-surface hover:-translate-y-1 transition-all duration-300"
           >
-            <div class="i-ph-twitter-logo text-xl"></div>
+            <div class="i-ph-github-logo-duotone text-xl"></div>
           </a>
           <a
-            href="#"
-            class="text-text-muted hover:text-secondary transition-colors"
-            aria-label="Instagram"
+            href="/rss.xml"
+            aria-label="RSS Feed"
+            class="w-12 h-12 rounded-full border border-border-subtle flex items-center justify-center text-text-muted hover:text-primary hover:border-primary hover:bg-surface hover:-translate-y-1 transition-all duration-300"
           >
-            <div class="i-ph-instagram-logo text-xl"></div>
+            <div class="i-ph-rss-simple-duotone text-xl"></div>
           </a>
           <a
-            href="#"
-            class="text-text-muted hover:text-secondary transition-colors"
-            aria-label="YouTube"
+            href="mailto:hola@cristianamente.xyz"
+            aria-label="Contacto"
+            class="w-12 h-12 rounded-full border border-border-subtle flex items-center justify-center text-text-muted hover:text-primary hover:border-primary hover:bg-surface hover:-translate-y-1 transition-all duration-300"
           >
-            <div class="i-ph-youtube-logo text-xl"></div>
-          </a>
-          <a
-            href="#"
-            class="text-text-muted hover:text-secondary transition-colors"
-            aria-label="RSS"
-          >
-            <div class="i-ph-rss text-xl"></div>
+            <div class="i-ph-envelope-simple-duotone text-xl"></div>
           </a>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Bottom bar -->
-  <div class="border-t border-border-subtle">
+      <!-- Links: Read -->
+      <div class="col-span-1 md:col-span-3 md:col-start-7 text-left">
+        <h4
+          class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-text-muted mb-6"
+        >
+          Explorar
+        </h4>
+        <ul class="space-y-4 font-bold text-sm">
+          <li>
+            <a
+              href="/blog"
+              class="text-text hover:text-primary hover:translate-x-2 inline-block transition-transform duration-300"
+              >Ensayos y Artículos</a
+            >
+          </li>
+          <li>
+            <a
+              href="/notes"
+              class="text-text hover:text-primary hover:translate-x-2 inline-block transition-transform duration-300"
+              >Notas Vivas</a
+            >
+          </li>
+          <li>
+            <a
+              href="/citas"
+              class="text-text hover:text-primary hover:translate-x-2 inline-block transition-transform duration-300"
+              >Colección de Citas</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Links: Project -->
+      <div class="col-span-1 md:col-span-3 text-left">
+        <h4
+          class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-text-muted mb-6"
+        >
+          El Proyecto
+        </h4>
+        <ul class="space-y-4 font-bold text-sm">
+          <li>
+            <a
+              href="/about"
+              class="text-text hover:text-primary hover:translate-x-2 inline-block transition-transform duration-300"
+              >Nuestra Filosofía</a
+            >
+          </li>
+          <li>
+            <a
+              href="/colaborar"
+              class="text-text hover:text-primary hover:translate-x-2 inline-flex items-center gap-2 transition-transform duration-300"
+            >
+              Contribuir <div class="i-ph-arrow-up-right text-xs opacity-50">
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/rss.xml"
+              class="text-text hover:text-primary hover:translate-x-2 inline-block transition-transform duration-300"
+              >Suscripción RSS</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
     <div
-      class="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-3"
+      class="border-t border-border-subtle pt-8 flex flex-col md:flex-row justify-between items-center gap-6"
     >
-      <p class="text-xs text-text-muted">
-        © {year} Cristianamente · Soli Deo Gloria
+      <p
+        class="text-[10px] text-text-muted font-mono uppercase tracking-widest text-center md:text-left"
+      >
+        © {year} Cristianamente
       </p>
-      <div class="flex gap-6">
-        <a
-          href="#"
-          class="text-xs text-text-muted hover:text-secondary transition-colors"
-        >
-          Privacidad
-        </a>
-        <a
-          href="#"
-          class="text-xs text-text-muted hover:text-secondary transition-colors"
-        >
-          Términos
-        </a>
+      <div
+        class="flex items-center gap-3 text-[10px] text-text-muted font-mono uppercase tracking-widest"
+      >
+        <span>Soli Deo Gloria</span>
+        <div class="w-1.5 h-1.5 bg-primary/40 rotate-45 shrink-0"></div>
       </div>
     </div>
   </div>
