@@ -40,14 +40,13 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    background: color-mix(in srgb, var(--color-bg), transparent 20%);
-    backdrop-filter: blur(8px);
+    background: color-mix(in srgb, var(--color-bg), transparent 10%);
+    backdrop-filter: blur(12px);
     padding: 0.5rem 1rem;
     border-radius: var(--radius-pill);
     border: 1px solid var(--color-border);
     box-shadow: var(--shadow-lg);
     z-index: 100;
-    filter: url(#filter-sketch);
   }
 
   .control-btn {

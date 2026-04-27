@@ -19,13 +19,37 @@
   function scanFrames() {
     if (!canvasElement) return;
     const frameElements = canvasElement.querySelectorAll('[data-frame]');
-    frames = Array.from(frameElements).map((el) => ({
-      x: parseFloat(el.getAttribute('data-x') || '0'),
-      y: parseFloat(el.getAttribute('data-y') || '0'),
-      scale: parseFloat(el.getAttribute('data-scale') || '1'),
-      rotate: parseFloat(el.getAttribute('data-rotate') || '0'),
-      id: el.getAttribute('data-id')
-    }));
+    frames = Array.from(frameElements).map((el, i) => {
+      const isAuto = el.getAttribute('data-auto') === 'true';
+      let x = parseFloat(el.getAttribute('data-x') || '0');
+      let y = parseFloat(el.getAttribute('data-y') || '0');
+      let scale = parseFloat(el.getAttribute('data-scale') || '1');
+      let rotate = parseFloat(el.getAttribute('data-rotate') || '0');
+      
+      if (isAuto && i > 0) {
+        // Auto-layout de zig-zag amplio para evitar overlaps
+        x = i * 1400; 
+        y = (i % 2 !== 0 ? -1 : 1) * 800;
+        
+        // Auto-rotación sutil y oscilante
+        if (el.getAttribute('data-rotate') === null) {
+          rotate = (i % 2 === 0 ? 1 : -1) * (5 + (i * 3) % 10);
+        }
+        
+        // Aplicamos el nuevo cálculo al DOM directamente para que se vea
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        el.style.transform = `translate(-50%, -50%) scale(${scale}) rotate(${rotate}deg)`;
+      }
+
+      return {
+        x,
+        y,
+        scale,
+        rotate,
+        id: el.getAttribute('data-id')
+      };
+    });
   }
 
   function goToFrame(index) {
@@ -71,7 +95,7 @@
 >
   <div 
     class="presentation-canvas"
-    style="transform: scale({$cameraScale}) translate({$cameraX}px, {$cameraY}px); transform-origin: {viewportWidth/2}px {viewportHeight/2}px;"
+    style="transform: scale({$cameraScale}) translate({$cameraX}px, {$cameraY}px); transform-origin: 0 0;"
     bind:this={canvasElement}
   >
     <slot />
@@ -90,14 +114,16 @@
   .presentation-viewport {
     position: relative;
     width: 100%;
-    height: 600px;
-    background: var(--color-bg);
+    height: 700px;
+    background-color: var(--color-bg);
+    background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: 0 0;
     overflow: hidden;
     border: 2px solid var(--color-border);
     border-radius: var(--radius-lg);
     margin: 3rem 0;
     cursor: grab;
-    filter: url(#filter-sketch);
   }
 
   .presentation-viewport:active {
