@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import ThemeSwitcher from "./ThemeSwitcher.svelte";
+  import ThemeSwitcher from "../ui/ThemeSwitcher/ThemeSwitcher.svelte";
 
   export let title: string;
   export let headings: { depth: number; slug: string; text: string }[] = [];

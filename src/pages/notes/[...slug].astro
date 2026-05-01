@@ -1,12 +1,12 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import NoteLayout from "../../layouts/NoteLayout.astro";
-import Mark from "../../components/Notes/Mark.astro";
-import Sidenote from "../../components/Notes/Sidenote.astro";
-import PostIt from "../../components/Notes/PostIt.astro";
-import HandwrittenQuote from "../../components/Notes/HandwrittenQuote.astro";
-import Presentation from "../../components/Notes/BrainstormCanvas.svelte";
-import Frame from "../../components/Notes/BrainstormFrame.astro";
+import Mark from "../../components/content/typography/Mark.astro";
+import Sidenote from "../../components/content/editorial/SidenoteHandwritten.astro";
+import PostIt from "../../components/content/interactive/PostIt.astro";
+import HandwrittenQuote from "../../components/content/quotes/HandwrittenQuote.astro";
+import Presentation from "../../components/content/interactive/BrainstormCanvas.svelte";
+import Frame from "../../components/content/interactive/BrainstormFrame.astro";
 
 export async function getStaticPaths() {
   const notes = await getCollection("notas");

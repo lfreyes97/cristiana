@@ -14,13 +14,13 @@
  */
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
-import Header from "../components/Header.astro";
-import HeroMinimal from "../components/HeroMinimal.astro";
-import FeaturedPost from "../components/FeaturedPost.astro";
-import EditorialFeatures from "../components/EditorialFeatures.astro";
-import Manifesto from "../components/Manifesto.astro";
-import QuoteCarousel from "../components/QuoteCarousel.svelte";
-import Footer from "../components/Footer.astro";
+import Header from "../components/layout/Header.astro";
+import HeroMinimal from "../components/sections/HeroMinimal.astro";
+import FeaturedPost from "../components/cards/FeaturedPost.astro";
+import EditorialFeatures from "../components/sections/EditorialFeatures.astro";
+import Manifesto from "../components/sections/Manifesto.astro";
+import QuoteCarousel from "../components/sections/QuoteCarousel.svelte";
+import Footer from "../components/layout/Footer.astro";
 
 const homeQuotes = [
   {
