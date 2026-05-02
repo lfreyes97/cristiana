@@ -26,7 +26,7 @@ const {
   <ReadingProgressHeader client:load title={title} headings={headings} />
 
   <main class="pt-8 pb-24 min-h-screen">
-    <article class="max-w-3xl mx-auto px-6">
+    <article class="max-w-7xl mx-auto px-6">
       <header class="mb-12 md:mb-16 text-center">
         <div class="flex items-center justify-center gap-4 mb-8">
           <span
@@ -67,7 +67,10 @@ const {
       }
 
       <div
-        class="prose prose-lg mx-auto prose-slate dark:prose-invert font-serif leading-loose
+        class="prose prose-lg prose-slate dark:prose-invert font-serif leading-loose
+                mx-auto overflow-visible
+                max-w-[68ch]
+                xl:ml-[max(4rem,calc(50%-34ch-180px))] xl:mr-[360px]
                 prose-headings:font-serif prose-headings:font-bold prose-headings:text-primary
                 prose-p:text-text prose-p:opacity-90
                 prose-a:text-primary prose-a:font-bold prose-a:no-underline hover:prose-a:text-secondary prose-a:border-b prose-a:border-secondary/30 hover:prose-a:border-secondary prose-a:transition-all

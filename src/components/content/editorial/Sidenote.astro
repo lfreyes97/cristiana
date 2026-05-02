@@ -52,18 +52,19 @@ const marker = n ? `${n}` : "†";
     border-radius: 0 4px 4px 0;
   }
 
-  /* Desktop: margin positioning */
+  /* Desktop: Tufte-style float into right gutter */
   @media (min-width: 1280px) {
     .sidenote {
-      position: absolute;
-      right: calc(-280px - 2rem);
-      top: -0.25rem;
-      width: 260px;
-      margin: 0;
+      float: right;
+      clear: right;
+      margin-right: -340px;
+      margin-top: 0.1rem;
+      margin-bottom: 1rem;
+      width: 300px;
       background: transparent;
       border-left: 1px solid
-        color-mix(in srgb, var(--color-secondary), transparent 70%);
-      padding: 0 0 0 0.75rem;
+        color-mix(in srgb, var(--color-secondary), transparent 65%);
+      padding: 0 0 0 0.85rem;
       border-radius: 0;
       font-size: 0.75rem;
     }
