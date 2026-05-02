@@ -10,6 +10,7 @@ interface Props {
   description: string;
   heroImage?: string;
   headings?: { depth: number; slug: string; text: string }[];
+  slug?: string;
 }
 
 const {
@@ -19,10 +20,13 @@ const {
   description,
   heroImage,
   headings = [],
+  slug,
 } = Astro.props;
+
+const ogImage = slug ? `/og/${slug}.png` : undefined;
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description} ogImage={ogImage}>
   <ReadingProgressHeader client:load title={title} headings={headings} />
 
   <main class="pt-8 pb-24 min-h-screen">

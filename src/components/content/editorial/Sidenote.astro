@@ -2,7 +2,7 @@
 /**
  * Sidenote: Tufte-style margin note.
  * Desktop (≥1280px): floats in the right margin.
- * Mobile: inline expandable <details>.
+ * Mobile: hidden by default, toggles on click/tap of the marker.
  *
  * Usage:
  *   <Sidenote n={1}>Esta idea fue desarrollada por Barth en 1934...</Sidenote>
@@ -13,60 +13,80 @@ interface Props {
 }
 const { n, label } = Astro.props;
 const marker = n ? `${n}` : "†";
+const id = `sn-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
-{/* Desktop: margin note */}
 <span class="sidenote-wrapper">
-  <sup class="sidenote-ref text-secondary font-mono text-xs cursor-help"
-    >{marker}</sup
+  <input type="checkbox" id={id} class="margin-toggle" />
+  <label
+    for={id}
+    class="sidenote-ref text-secondary font-mono text-xs cursor-pointer select-none"
   >
-  <span class="sidenote">
+    {marker}
+  </label>
+  <small class="sidenote">
     {
       label && (
-        <span class="block text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">
+        <span class="block text-[11px] font-bold uppercase tracking-widest text-secondary mb-1.5 not-italic">
           {label}
         </span>
       )
     }
     <slot />
-  </span>
+  </small>
 </span>
 
 <style>
-  .sidenote-wrapper {
-    position: relative;
+  .margin-toggle {
+    display: none;
+  }
+
+  .sidenote-ref {
+    vertical-align: super;
+    line-height: 0;
+    padding: 0 0.1em;
   }
 
   .sidenote {
-    /* Mobile: inline */
-    display: block;
-    font-size: 0.8rem;
+    /* Mobile: hidden by default, shown when marker is tapped */
+    display: none;
+    font-size: 0.95rem;
     color: var(--color-text-muted);
     font-style: italic;
     font-family: var(--font-serif, serif);
-    line-height: 1.5;
+    line-height: 1.6;
     background: var(--color-bg-offset);
     border-left: 2px solid var(--color-secondary);
-    padding: 0.5rem 0.75rem;
-    margin: 0.5rem 0;
-    border-radius: 0 4px 4px 0;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .margin-toggle:checked + .sidenote-ref + .sidenote {
+    display: block;
   }
 
   /* Desktop: Tufte-style float into right gutter */
   @media (min-width: 1280px) {
     .sidenote {
+      display: block;
       float: right;
       clear: right;
       margin-right: -340px;
-      margin-top: 0.1rem;
-      margin-bottom: 1rem;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
       width: 300px;
       background: transparent;
       border-left: 1px solid
-        color-mix(in srgb, var(--color-secondary), transparent 65%);
-      padding: 0 0 0 0.85rem;
+        color-mix(in srgb, var(--color-secondary), transparent 60%);
+      padding: 0 0 0 1rem;
       border-radius: 0;
-      font-size: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 400;
+    }
+
+    .sidenote-ref {
+      cursor: default;
     }
   }
 </style>
