@@ -1,85 +1,16 @@
 ---
-/**
- * Alternative Home Page (v2)
- *
- * Layout:
- *   1. HeroMinimal    — typographic, no bg effects
- *   2. Disciplines    — horizontal scroll / 5-col grid
- *   3. FeaturedPost   — magazine hero for latest post
- *   4. EditorialFeatures — remaining posts as list
- *   5. QuoteCarousel  — rotating gallery of key quotes
- *   6. Manifesto      — Kuyper quote closer
- *
- * To test: rename this to index.astro and the current one to index.v1.astro
- */
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import Header from "../components/layout/Header.astro";
 import HeroMinimal from "../components/sections/HeroMinimal.astro";
-import FeaturedPost from "../components/cards/FeaturedPost.astro";
-import EditorialFeatures from "../components/sections/EditorialFeatures.astro";
-import Manifesto from "../components/sections/Manifesto.astro";
-import QuoteCarousel from "../components/sections/QuoteCarousel.svelte";
+import CardBlog from "../components/cards/CardBlog.astro";
 import Footer from "../components/layout/Footer.astro";
-
-const homeQuotes = [
-  {
-    text: "No hay un solo centímetro cuadrado en todo el dominio de nuestra existencia humana sobre el cual Cristo, que es Soberano sobre todo, no grite: ¡Mío!",
-    author: "Abraham Kuyper",
-    source: "Discurso inaugural, Universidad Libre de Ámsterdam",
-    year: "1880",
-    category: "Soberanía",
-  },
-  {
-    text: "El Cristianismo no es solo una manera de ser salvo; es una manera de ver y entender todo lo que existe.",
-    author: "J. Gresham Machen",
-    source: "Educación, Cristianismo y Estado",
-    year: "1933",
-    category: "Cosmovisión",
-  },
-  {
-    text: "Lo que Dios pide no es cierta cantidad de nuestro tiempo o cierta cantidad de atención; ni siquiera nos pide todo nuestro tiempo y toda nuestra atención: nos pide a nosotros. Para todos y cada uno son válidas las palabras del Bautista: “Conviene que Él crezca y que yo disminuya”. ",
-    author: "C. S. Lewis",
-    source: "El peso de la gloria",
-    year: "1949",
-    category: "Deseo",
-  },
-  {
-    text: "Nos hiciste, Señor, para ti, y nuestro corazón está inquieto hasta que descanse en ti.",
-    author: "Agustín de Hipona",
-    source: "Confesiones, I.1",
-    year: "397",
-    category: "Fe",
-  },
-  {
-    text: "Toda inteligibilidad presupone un fundamento trascendente. La cosmovisión cristiana provee ese fundamento de manera única.",
-    author: "Cornelius Van Til",
-    source: "Apologética cristiana",
-    year: "1976",
-    category: "Apologética",
-  },
-];
 
 const allPosts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-const [latest, ...rest] = allPosts;
-
-const latestPost = {
-  title: latest.data.title,
-  excerpt: latest.data.description,
-  category: latest.data.category,
-  date: latest.data.pubDate.toLocaleDateString("es-ES", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  }),
-  slug: latest.id,
-  heroImage: latest.data.heroImage,
-};
-
-const morePosts = rest.slice(0, 3).map((post) => ({
+const mappedPosts = allPosts.map((post) => ({
   title: post.data.title,
   excerpt: post.data.description,
   category: post.data.category,
@@ -91,7 +22,7 @@ const morePosts = rest.slice(0, 3).map((post) => ({
   readTime: "5 min",
   icon: post.data.icon || "i-ph-file-text-duotone",
   slug: post.id,
-  heroImage: post.data.heroImage,
+  image: post.data.heroImage,
 }));
 ---
 
@@ -100,20 +31,19 @@ const morePosts = rest.slice(0, 3).map((post) => ({
 
   <main>
     <HeroMinimal />
-    <!-- <Disciplines /> -->
-    <FeaturedPost {...latestPost} />
-    <EditorialFeatures posts={morePosts} />
-
-    <div class="border-t border-border-subtle">
-      <QuoteCarousel
-        client:visible
-        quotes={homeQuotes}
-        label="Voces que inspiran"
-        autoplayMs={7000}
-      />
-    </div>
-
-    <Manifesto />
+    
+    <section class="max-w-[1200px] mx-auto px-4 md:px-8 py-16 md:py-24">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-serif font-black text-primary">Artículos Recientes</h2>
+        <p class="text-text-muted mt-2 text-lg">Explorando la intersección de la fe y la cultura contemporánea.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 gap-8">
+        {mappedPosts.map((post) => (
+          <CardBlog {...post} variant="list" />
+        ))}
+      </div>
+    </section>
   </main>
 
   <Footer />
