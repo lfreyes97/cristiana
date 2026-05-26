@@ -6,9 +6,9 @@ import HeroMinimal from "../components/sections/HeroMinimal.astro";
 import CardBlog from "../components/cards/CardBlog.astro";
 import Footer from "../components/layout/Footer.astro";
 
-const allPosts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const allPosts = (await getCollection("blog"))
+  .filter((post) => import.meta.env.DEV || !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const mappedPosts = allPosts.map((post) => ({
   title: post.data.title,

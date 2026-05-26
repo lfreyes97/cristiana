@@ -5,7 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 export async function getStaticPaths() {
-  const blogPosts = await getCollection("blog");
+  const blogPosts = (await getCollection("blog")).filter((post) => import.meta.env.DEV || !post.data.draft);
   const notes = await getCollection("notas");
 
   return [...blogPosts, ...notes].map((entry) => ({

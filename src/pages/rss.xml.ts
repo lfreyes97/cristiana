@@ -15,7 +15,7 @@ export const GET: APIRoute = async (context) => {
     .toString()
     .replace(/\/$/, "");
 
-  const blog = await getCollection("blog");
+  const blog = (await getCollection("blog")).filter((post) => import.meta.env.DEV || !post.data.draft);
   const citas = await getCollection("citas");
 
   const items = [
