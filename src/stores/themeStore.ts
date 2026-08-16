@@ -17,13 +17,16 @@ export interface UIStyle {
 export const schemas: Schema[] = [
   { id: "paper", label: "Paper", description: "Editorial y cálido" },
   { id: "midnight", label: "Midnight", description: "Oscuro y sofisticado" },
-  { id: "tokyo-night", label: "Tokyo", description: "Digital y vibrante" },
-  { id: "gruvbox", label: "Gruvbox", description: "Retro y nostálgico" },
   { id: "nord", label: "Nord", description: "Fresco y polar" },
   { id: "pastel", label: "Pastel", description: "Suave y onírico" },
   { id: "earth", label: "Tierras", description: "Natural y cálido" },
   { id: "neutral", label: "Neutral", description: "Tailwind monocromo" },
 ];
+
+// Nota: "tokyo-night" y "gruvbox" se retiraron del selector (2026-08) por
+// competir con la identidad editorial de la marca — son paletas insignia
+// de editores de código y no aportan a la narrativa del sitio.
+const VALID_SCHEMA_IDS = schemas.map((s) => s.id);
 
 export const uiStyles: UIStyle[] = [
   { id: "modern", label: "Moderno", icon: "i-ph-circle" },
@@ -61,7 +64,10 @@ function updateFrauncesDom(wonk: number, soft: number, opsz: number) {
 
 // ── Actions ──────────────────────────────────────────────────────
 export function initTheme() {
-  const t = localStorage.getItem("theme") || "paper";
+  const stored = localStorage.getItem("theme") || "paper";
+  // Si un visitante tenía guardado un tema retirado (p.ej. gruvbox/tokyo-night),
+  // volvemos al default en vez de renderizar sin estilos.
+  const t = VALID_SCHEMA_IDS.includes(stored) ? stored : "paper";
   const m = localStorage.getItem("mode") || "light";
   const s = localStorage.getItem("style") || "modern";
   theme.set(t);
